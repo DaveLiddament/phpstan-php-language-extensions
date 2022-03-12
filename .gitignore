@@ -1,0 +1,7 @@
+.idea/
+.vagrant/
+vendor/
+Vagrantfile
+.phpunit.cache
+.php-cs-fixer.cache
+
