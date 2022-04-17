@@ -3,7 +3,8 @@
     "description": "PHPStan rules to implement the language extensions provided by the php-language-extensions",
     "type": "phpstan-extension",
     "require": {
-        "phpstan/phpstan": "^1.0"
+        "phpstan/phpstan": "^1.0",
+        "dave-liddament/php-language-extensions": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -29,6 +30,12 @@
             "name": "Dave Liddament",
             "email": "dave@lampbristol.com"
         }
+    ],
+    "repositories" : [
+      {
+        "type": "vcs",
+        "url": "git@github.com:DaveLiddament/php-language-extensions.git"
+      }
     ],
     "scripts": {
         "composer-validate" : "@composer validate --no-check-all --strict",

@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04d337acea463e7169581d6d66b74685",
+    "content-hash": "a409d14683c723f4b9f65b514c92c01e",
     "packages": [
+        {
+            "name": "dave-liddament/php-language-extensions",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:DaveLiddament/php-language-extensions.git",
+                "reference": "7dcdd5895070d01c0d9716b103a85ed7ee6d54bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/7dcdd5895070d01c0d9716b103a85ed7ee6d54bf",
+                "reference": "7dcdd5895070d01c0d9716b103a85ed7ee6d54bf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DaveLiddament\\PhpLanguageExtensions\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Liddament",
+                    "email": "dave@lampbristol.com"
+                }
+            ],
+            "description": "Attributes for extending the PHP language, using static analysis to enforce new language constructs",
+            "support": {
+                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.1.0",
+                "issues": "https://github.com/DaveLiddament/php-language-extensions/issues"
+            },
+            "time": "2022-04-16T09:56:56+00:00"
+        },
         {
             "name": "phpstan/phpstan",
             "version": "1.4.10",
