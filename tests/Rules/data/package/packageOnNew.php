@@ -2,7 +2,7 @@
 
 namespace PackageOnNew {
 
-    use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\Package;
+    use DaveLiddament\PhpLanguageExtensions\Package;
 
     #[Package]
     class Person

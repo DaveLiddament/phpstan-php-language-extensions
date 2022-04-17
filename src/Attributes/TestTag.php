@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DaveLiddament\PhpstanPhpLanguageExtensions\Attributes;
+namespace DaveLiddament\PhpLanguageExtensions;
 
 use Attribute;
 

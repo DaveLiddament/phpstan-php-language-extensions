@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Unit;
 
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\Friend;
+use DaveLiddament\PhpLanguageExtensions\Friend;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\AttributeValueReader;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Unit\data\Bar;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Unit\data\Class0Friends;
