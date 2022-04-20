@@ -17,12 +17,12 @@ class MethodAttributes
     {
     }
 
-    #[Friend([Foo::class, Bar::class])]
+    #[Friend(Foo::class, Bar::class)]
     public function friendWithTwoValues(): void
     {
     }
 
-    #[Friend([Bar::class])]
+    #[Friend(Bar::class)]
     public function friendWithOneValueInArray(): void
     {
     }

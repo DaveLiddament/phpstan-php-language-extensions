@@ -3,8 +3,9 @@
     "description": "PHPStan rules to implement the language extensions provided by the php-language-extensions",
     "type": "phpstan-extension",
     "require": {
+        "php": "^8",
         "phpstan/phpstan": "^1.0",
-        "dave-liddament/php-language-extensions": "^0.1.0"
+        "dave-liddament/php-language-extensions": "^0.2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",

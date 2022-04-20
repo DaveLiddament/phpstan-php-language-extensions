@@ -20,18 +20,10 @@ class AttributeValueReader
         if (!$reflectionClass->hasMethod($methodName)) {
             return [];
         }
-
         $reflectionMethod = $reflectionClass->getMethod($methodName);
 
         foreach ($reflectionMethod->getAttributes($attributeClassName) as $attribute) {
-            $argumentCount = count($attribute->getArguments());
-            if (1 !== $argumentCount) {
-                throw new \LogicException('Friend has no class');
-            }
-
-            $value = $attribute->getArguments()[0];
-
-            return (is_string($value)) ? [$value] : $value;
+            return $attribute->getArguments();
         }
 
         return [];
@@ -48,14 +40,7 @@ class AttributeValueReader
         string $attributeClassName,
     ): array {
         foreach ($reflectionClass->getAttributes($attributeClassName) as $attribute) {
-            $argumentCount = count($attribute->getArguments());
-            if (1 !== $argumentCount) {
-                throw new \LogicException('Friend has no class');
-            }
-
-            $value = $attribute->getArguments()[0];
-
-            return (is_string($value)) ? [$value] : $value;
+            return $attribute->getArguments();
         }
 
         return [];
