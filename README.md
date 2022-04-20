@@ -26,4 +26,3 @@ composer require --dev dave-liddament/phpstan-php-language-extensions
 # TODO
 
 - [] Add contributing notes
-- [] Add github actions
