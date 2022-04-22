@@ -5,7 +5,6 @@ This is an extension for [PHPStan](https://phpstan.org) for adding analysis for 
 **Language feature added:**
 - [package](https://github.com/DaveLiddament/php-language-extensions#package) 
 - [friend](https://github.com/DaveLiddament/php-language-extensions#friend)
-- [sealed](https://github.com/DaveLiddament/php-language-extensions#sealed)
 
 ## Installation
 
