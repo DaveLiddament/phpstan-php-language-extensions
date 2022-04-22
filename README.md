@@ -1,6 +1,6 @@
 # PHPStan PHP Language Extensions (currently in BETA)
 
-This is an extension for [PHPStan](https://phpstan.org) for adding analysis for [PHP Language Extensions](https://github.com/DaveLiddament/php-language-extension).
+This is an extension for [PHPStan](https://phpstan.org) for adding analysis for [PHP Language Extensions](https://github.com/DaveLiddament/php-language-extensions).
 
 **Language feature added:**
 - [package](https://github.com/DaveLiddament/php-language-extensions#package) 
@@ -63,3 +63,6 @@ parameters:
 
 See [Contributing](CONTRIBUTING.md).
 
+## Demo project
+
+See [PHP language extensions PHPStan demo](https://github.com/DaveLiddament/php-language-extensions-phpstan-demo) project.
