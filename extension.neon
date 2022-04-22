@@ -1,34 +1,49 @@
 parameters:
-    mode: ~
-    testNamespace: ~
+
+    phpLanguageExtensions:
+        mode: null
+        testNamespace: null
 
 services:
     -
         class: DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig
         arguments:
-            mode: %mode%
-            testNamespace: "testNamespace"
+            mode: %phpLanguageExtensions.mode%
+            testNamespace: %phpLanguageExtensions.testNamespace%
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\FriendMethodCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\FriendMethodCallRule
         tags:
         - phpstan.rules.rule
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\FriendNewCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\FriendNewCallRule
         tags:
         - phpstan.rules.rule
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\FriendStaticCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\FriendStaticCallRule
         tags:
         - phpstan.rules.rule
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\PackageMethodCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\PackageMethodCallRule
         tags:
         - phpstan.rules.rule
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\PackageNewCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\PackageNewCallRule
         tags:
         - phpstan.rules.rule
 
-        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rule\PackageStaticCallRule
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\PackageStaticCallRule
         tags:
         - phpstan.rules.rule
+
+parametersSchema:
+    phpLanguageExtensions: structure([
+        testNamespace: schema(string(), nullable())
+        mode: schema(anyOf('none', 'className', 'namespace'))
+    ])
+
