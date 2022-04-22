@@ -1,56 +1,63 @@
 {
-    "name": "dave-liddament/phpstan-php-language-extensions",
-    "description": "PHPStan rules to implement the language extensions provided by the php-language-extensions",
-    "type": "phpstan-extension",
-    "require": {
-        "php": "^8",
-        "phpstan/phpstan": "^1.0",
-        "dave-liddament/php-language-extensions": "^0.2.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.0",
-        "friendsofphp/php-cs-fixer": "^3.7",
-        "php-parallel-lint/php-parallel-lint": "^1.3"
-    },
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "DaveLiddament\\PhpstanPhpLanguageExtensions\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "DaveLiddament\\PhpstanPhpLanguageExtensions\\Tests\\" : "tests/"
-        },
-        "classmap": [
-            "tests/Rules/data"
-        ]
-    },
-    "authors": [
-        {
-            "name": "Dave Liddament",
-            "email": "dave@lampbristol.com"
-        }
-    ],
-    "repositories" : [
-      {
-        "type": "vcs",
-        "url": "git@github.com:DaveLiddament/php-language-extensions.git"
-      }
-    ],
-    "scripts": {
-        "composer-validate" : "@composer validate --no-check-all --strict",
-        "cs-fix" : "php-cs-fixer fix",
-        "cs" : "php-cs-fixer fix --dry-run -v",
-        "analyse" : "phpstan analyse",
-        "lint" : "parallel-lint src tests",
-        "test" : "phpunit",
-        "ci" : [
-            "@composer-validate",
-            "@lint",
-            "@cs",
-            "@test",
-            "@analyse"
-        ]
+  "name": "dave-liddament/phpstan-php-language-extensions",
+  "description": "PHPStan rules to implement the language extensions provided by the php-language-extensions",
+  "type": "phpstan-extension",
+  "require": {
+    "php": "^8",
+    "phpstan/phpstan": "^1.0",
+    "dave-liddament/php-language-extensions": "^0.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.0",
+    "friendsofphp/php-cs-fixer": "^3.7",
+    "php-parallel-lint/php-parallel-lint": "^1.3"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "DaveLiddament\\PhpstanPhpLanguageExtensions\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DaveLiddament\\PhpstanPhpLanguageExtensions\\Tests\\": "tests/"
+    },
+    "classmap": [
+      "tests/Rules/data"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Dave Liddament",
+      "email": "dave@lampbristol.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:DaveLiddament/php-language-extensions.git"
+    }
+  ],
+  "scripts": {
+    "composer-validate": "@composer validate --no-check-all --strict",
+    "cs-fix": "php-cs-fixer fix",
+    "cs": "php-cs-fixer fix --dry-run -v",
+    "analyse": "phpstan analyse",
+    "lint": "parallel-lint src tests",
+    "test": "phpunit",
+    "ci": [
+      "@composer-validate",
+      "@lint",
+      "@cs",
+      "@test",
+      "@analyse"
+    ]
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon"
+      ]
+    }
+  }
 }
