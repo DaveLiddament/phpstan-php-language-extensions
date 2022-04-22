@@ -1,7 +1,7 @@
 parameters:
 
     phpLanguageExtensions:
-        mode: null
+        mode: 'none'
         testNamespace: null
 
 services:
