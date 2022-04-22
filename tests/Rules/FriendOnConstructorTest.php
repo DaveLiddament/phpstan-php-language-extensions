@@ -15,7 +15,7 @@ class FriendOnConstructorTest extends AbstractFriendRuleTest
     {
         return new FriendNewCallRule(
             $this->createReflectionProvider(),
-            new TestConfig(),
+            new TestConfig(TestConfig::NONE),
         );
     }
 

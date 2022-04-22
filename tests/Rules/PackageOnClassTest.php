@@ -15,7 +15,7 @@ class PackageOnClassTest extends AbstractPackageRuleTest
     {
         return new PackageMethodCallRule(
             $this->createReflectionProvider(),
-            new TestConfig(),
+            new TestConfig(TestConfig::NONE),
         );
     }
 

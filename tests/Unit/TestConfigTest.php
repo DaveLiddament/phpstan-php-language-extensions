@@ -17,12 +17,6 @@ class TestConfigTest extends TestCase
         $this->assertSame(TestConfig::NONE, $testConfig->getMode());
     }
 
-    public function testDefault(): void
-    {
-        $testConfig = new TestConfig();
-        $this->assertSame(TestConfig::NONE, $testConfig->getMode());
-    }
-
     public function testModeClassName(): void
     {
         $testConfig = new TestConfig(TestConfig::CLASS_NAME);

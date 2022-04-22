@@ -15,7 +15,7 @@ class FriendRuleStaticCallTest extends AbstractFriendRuleTest
     {
         return new FriendStaticCallRule(
             $this->createReflectionProvider(),
-            new TestConfig(),
+            new TestConfig(TestConfig::NONE),
         );
     }
 

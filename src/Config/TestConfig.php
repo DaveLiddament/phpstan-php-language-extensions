@@ -7,7 +7,7 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Config;
 class TestConfig
 {
     public const NONE = 'none';
-    public const CLASS_NAME = 'class_name';
+    public const CLASS_NAME = 'className';
     public const NAMESPACE = 'namespace';
 
     public const VALID_NODES = [
@@ -20,10 +20,9 @@ class TestConfig
     private ?string $testNamespace;
 
     public function __construct(
-        ?string $mode = null,
+        string $mode,
         ?string $testNamespace = null,
     ) {
-        $mode = $mode ?? self::NONE;
         if (!in_array(
             needle: $mode,
             haystack: self::VALID_NODES,
