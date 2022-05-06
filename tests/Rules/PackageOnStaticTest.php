@@ -25,7 +25,7 @@ class PackageOnStaticTest extends AbstractPackageRuleTest
             __DIR__.'/data/package/packageOnStaticMethod.php',
             [
                 [
-                    40,
+                    45,
                     'PackageOnStaticMethod\Person::updateName',
                     'PackageOnStaticMethod2',
                 ],

@@ -25,13 +25,13 @@ class FriendOnConstructorTest extends AbstractFriendRuleTest
             __DIR__.'/data/friend/friendOnConstructor.php',
             [
                 [
-                    24,
+                    29,
                     'FriendOnConstructor\Person::__construct',
                     'FriendOnConstructor\Exam',
                     'FriendOnConstructor\PersonBuilder',
                 ],
                 [
-                    28,
+                    33,
                     'FriendOnConstructor\Person::__construct',
                     '<no class>',
                     'FriendOnConstructor\PersonBuilder',

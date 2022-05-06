@@ -22,7 +22,7 @@ class PackageNewCallRule extends AbstractPackageRule
             return [];
         }
 
-        $className = $node->class->toCodeString();
+        $className = $scope->resolveName($node->class);
         $error = $this->getErrorOrNull($scope, $className, '__construct');
 
         return (null === $error) ? [] : [$error];

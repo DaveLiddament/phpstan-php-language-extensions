@@ -11,6 +11,11 @@ namespace PackageOnNew {
         {
             return new Person(); // OK
         }
+
+        public static function createSelf(): self
+        {
+            return new self(); // OK
+        }
     }
 
     class PersonBuilder
