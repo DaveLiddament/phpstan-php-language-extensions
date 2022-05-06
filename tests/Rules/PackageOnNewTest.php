@@ -25,7 +25,7 @@ class PackageOnNewTest extends AbstractPackageRuleTest
             __DIR__.'/data/package/packageOnNew.php',
             [
                 [
-                    35,
+                    40,
                     'PackageOnNew\Person::__construct',
                     'PackageOnNew2',
                 ],

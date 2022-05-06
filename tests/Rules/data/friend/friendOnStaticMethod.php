@@ -13,7 +13,7 @@ class Person
 
     public static function update(): void
     {
-        Person::updateName(); // OK
+        self::updateName(); // OK
     }
 }
 

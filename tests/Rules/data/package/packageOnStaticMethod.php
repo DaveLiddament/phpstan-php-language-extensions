@@ -15,6 +15,11 @@ namespace PackageOnStaticMethod {
         {
             Person::updateName(); // OK
         }
+
+        public static function updateSelf(): void
+        {
+            self::updateName(); // OK
+        }
     }
 
     class Updater
