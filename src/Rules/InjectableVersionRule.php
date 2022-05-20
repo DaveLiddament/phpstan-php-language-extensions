@@ -5,57 +5,87 @@ declare(strict_types=1);
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\InjectableVersion;
+use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
+use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
 use PhpParser\Node;
-use PhpParser\Node\Stmt\ClassMethod;
 use PHPStan\Analyser\Scope;
+use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 
-/** @implements Rule<ClassMethod> */
+/** @implements Rule<InClassMethodNode> */
 class InjectableVersionRule implements Rule
 {
+    /** @var Cache<?string> */
+    private Cache $cache;
+
     public function __construct(
         private ReflectionProvider $reflectionProvider,
+        private TestClassChecker $testClassChecker,
     ) {
+        $this->cache = new Cache();
     }
 
     public function getNodeType(): string
     {
-        return ClassMethod::class;
+        return InClassMethodNode::class;
     }
 
     public function processNode(Node $node, Scope $scope): array
     {
-        if ('__construct' !== $node->name->name) {
+        $errors = [];
+
+        $method = $scope->getFunction();
+
+        if (!$method instanceof MethodReflection) {
+            // Should never happen
             return [];
         }
 
-        $errors = [];
+        // For now only interested in constructors
+        if ('__construct' !== $method->getName()) {
+            return [];
+        }
 
-        foreach ($node->params as $position => $param) {
-            $className = null;
-            $type = $param->type;
+        if ($this->testClassChecker->isTestClass(
+            $scope->getNamespace(),
+            $scope->getClassReflection()?->getName()
+        )) {
+            return [];
+        }
 
-            if ($type instanceof Node\Name) {
-                $className = $scope->resolveName($type);
-            }
+        $parameters = ParametersAcceptorSelector::selectSingle($method->getVariants());
 
-            if (null === $className) {
-                continue;
-            }
+        foreach ($parameters->getParameters() as $index => $parameter) {
+            $position = $index + 1;
 
-            $classToUse = $this->checkClass($className);
-            if (null !== $classToUse) {
-                $message = sprintf(
-                    'Argument %d has %s injected, instead use %s',
-                    $position + 1,
-                    $className,
-                    $classToUse
-                );
+            $type = $parameter->getType();
+            $classesToCheck = $type->isIterable()->yes()
+                ? $type->getIterableValueType()->getReferencedClasses()
+                : $type->getReferencedClasses();
 
-                $errors[] = RuleErrorBuilder::message($message)->build();
+            foreach ($classesToCheck as $className) {
+                if ($this->cache->hasEntry($className)) {
+                    $classToUse = $this->cache->getEntry($className);
+                } else {
+                    $classToUse = $this->checkClass($className);
+                    $this->cache->addEntry($className, $classToUse);
+                }
+
+                if (null !== $classToUse) {
+                    $message = sprintf(
+                        'Argument %d has %s injected, instead use %s',
+                        $position,
+                        $className,
+                        $classToUse
+                    );
+
+                    $errors[] = RuleErrorBuilder::message($message)->build();
+                }
             }
         }
 
