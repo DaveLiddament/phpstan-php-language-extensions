@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
+use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\CheckInjectableVersion;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\InjectableVersion;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
@@ -46,8 +47,7 @@ class InjectableVersionRule implements Rule
             return [];
         }
 
-        // For now only interested in constructors
-        if ('__construct' !== $method->getName()) {
+        if (!$this->checkMethod($scope->getClassReflection(), $method)) {
             return [];
         }
 
@@ -122,5 +122,27 @@ class InjectableVersionRule implements Rule
         $nativeReflection = $classReflection->getNativeReflection();
 
         return count($nativeReflection->getAttributes(InjectableVersion::class)) > 0;
+    }
+
+    private function checkMethod(
+        ?ClassReflection $classReflection,
+        MethodReflection $method,
+    ): bool {
+        $methodName = $method->getName();
+
+        // If constructor then check
+        if ('__construct' === $methodName) {
+            return true;
+        }
+
+        if (null === $classReflection) {
+            // Should never happen
+            return false;
+        }
+
+        $nativeClassReflection = $classReflection->getNativeReflection();
+        $attributes = $nativeClassReflection->getMethod($methodName)->getAttributes(CheckInjectableVersion::class);
+
+        return count($attributes) > 0;
     }
 }
