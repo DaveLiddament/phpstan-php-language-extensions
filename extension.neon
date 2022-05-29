@@ -41,6 +41,23 @@ services:
         tags:
         - phpstan.rules.rule
 
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagMethodCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagNewCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagStaticCallRule
+        tags:
+        - phpstan.rules.rule
+
+
+
 parametersSchema:
     phpLanguageExtensions: structure([
         testNamespace: schema(string(), nullable())
