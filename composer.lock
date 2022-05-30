@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43bac8598035a7d102fa2684e3508b5e",
+    "content-hash": "772756d99b7db52d7131621d043cab58",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/php-language-extensions.git",
-                "reference": "b4865a2099b37c407862c5c9a87803b7dcc5d12f"
+                "reference": "f553c286caa60a7cdf675526579f19a31d7bad78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/b4865a2099b37c407862c5c9a87803b7dcc5d12f",
-                "reference": "b4865a2099b37c407862c5c9a87803b7dcc5d12f",
+                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/f553c286caa60a7cdf675526579f19a31d7bad78",
+                "reference": "f553c286caa60a7cdf675526579f19a31d7bad78",
                 "shasum": ""
             },
             "require": {
@@ -46,11 +46,17 @@
                 }
             ],
             "description": "Attributes for extending the PHP language, using static analysis to enforce new language constructs",
+            "keywords": [
+                "friend attribute",
+                "package attribute",
+                "sealed attribute",
+                "static analysis"
+            ],
             "support": {
                 "issues": "https://github.com/DaveLiddament/php-language-extensions/issues",
-                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.1.0"
+                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.2.0"
             },
-            "time": "2022-04-22T13:13:07+00:00"
+            "time": "2022-05-30T14:05:00+00:00"
         },
         {
             "name": "phpstan/phpstan",
