@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\CheckInjectableVersion;
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\InjectableVersion;
+use DaveLiddament\PhpLanguageExtensions\CheckInjectableVersion;
+use DaveLiddament\PhpLanguageExtensions\InjectableVersion;
+use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
 use PhpParser\Node;
@@ -24,11 +25,14 @@ class InjectableVersionRule implements Rule
     /** @var Cache<?string> */
     private Cache $cache;
 
+    private TestClassChecker $testClassChecker;
+
     public function __construct(
         private ReflectionProvider $reflectionProvider,
-        private TestClassChecker $testClassChecker,
+        TestConfig $testConfig,
     ) {
         $this->cache = new Cache();
+        $this->testClassChecker = new TestClassChecker($testConfig);
     }
 
     public function getNodeType(): string

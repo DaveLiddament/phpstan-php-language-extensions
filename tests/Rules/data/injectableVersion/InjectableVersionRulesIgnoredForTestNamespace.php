@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace InjectableVersionRulesIgnoredForTestNamespace {
 
-    use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\InjectableVersion;
+    use DaveLiddament\PhpLanguageExtensions\InjectableVersion;
 
     #[InjectableVersion]
     interface Repository

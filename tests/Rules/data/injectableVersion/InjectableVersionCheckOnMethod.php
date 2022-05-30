@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace InjectableVersionCheckOnMethod;
 
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\CheckInjectableVersion;
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\InjectableVersion;
+use DaveLiddament\PhpLanguageExtensions\CheckInjectableVersion;
+use DaveLiddament\PhpLanguageExtensions\InjectableVersion;
 
 #[InjectableVersion]
 abstract class Repository

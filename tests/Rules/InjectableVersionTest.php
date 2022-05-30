@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
-use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\InjectableVersionRule;
 use PHPStan\Rules\Rule;
 
@@ -16,9 +15,7 @@ class InjectableVersionTest extends AbstractInjectableVersionRuleTest
     {
         return new InjectableVersionRule(
             $this->createReflectionProvider(),
-            new TestClassChecker(
-                new TestConfig(TestConfig::NONE)
-            ),
+            new TestConfig(TestConfig::NONE),
         );
     }
 

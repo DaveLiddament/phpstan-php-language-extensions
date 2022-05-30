@@ -41,6 +41,12 @@ services:
         tags:
         - phpstan.rules.rule
 
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\InjectableVersionRule
+        tags:
+        - phpstan.rules.rule
+
+
 parametersSchema:
     phpLanguageExtensions: structure([
         testNamespace: schema(string(), nullable())
