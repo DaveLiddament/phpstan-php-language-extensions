@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\TestTag;
+use DaveLiddament\PhpLanguageExtensions\TestTag;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TestTagOnMethodIgnoredInTestNamespace {
 
-    use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\TestTag;
+    use DaveLiddament\PhpLanguageExtensions\TestTag;
 
     class Person
     {

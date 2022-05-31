@@ -3,7 +3,7 @@
 namespace TestTagOnStaticMethod;
 
 
-use DaveLiddament\PhpstanPhpLanguageExtensions\Attributes\TestTag;
+use DaveLiddament\PhpLanguageExtensions\TestTag;
 
 class Person
 {
