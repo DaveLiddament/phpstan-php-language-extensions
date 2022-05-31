@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "772756d99b7db52d7131621d043cab58",
+    "content-hash": "0e055e95e35f76b9015b961697bda9ea",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/php-language-extensions.git",
-                "reference": "f553c286caa60a7cdf675526579f19a31d7bad78"
+                "reference": "aa2f63225b1f5c5feb85c1b8736b46f375c73d7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/f553c286caa60a7cdf675526579f19a31d7bad78",
-                "reference": "f553c286caa60a7cdf675526579f19a31d7bad78",
+                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/aa2f63225b1f5c5feb85c1b8736b46f375c73d7c",
+                "reference": "aa2f63225b1f5c5feb85c1b8736b46f375c73d7c",
                 "shasum": ""
             },
             "require": {
@@ -54,9 +54,9 @@
             ],
             "support": {
                 "issues": "https://github.com/DaveLiddament/php-language-extensions/issues",
-                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.2.0"
+                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.2.1"
             },
-            "time": "2022-05-30T14:05:00+00:00"
+            "time": "2022-05-31T09:24:08+00:00"
         },
         {
             "name": "phpstan/phpstan",
