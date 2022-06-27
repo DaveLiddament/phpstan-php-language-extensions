@@ -22,7 +22,6 @@ jobs:
           - "locked"
           - "highest"
         php-version:
-          - "8.0"
           - "8.1"
         operating-system:
           - "ubuntu-18.04"
