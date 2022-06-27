@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e055e95e35f76b9015b961697bda9ea",
+    "content-hash": "a6e1c69383ca2d0846131d1fbdf9fba4",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
@@ -4205,8 +4205,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8"
+        "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
