@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
+use function count;
 use DaveLiddament\PhpLanguageExtensions\Package;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
@@ -45,24 +46,16 @@ abstract class AbstractPackageRule implements Rule
 
         $fullMethodName = "{$className}::{$methodName}";
 
-        if ($this->cache->hasEntry($fullMethodName)) {
-            $isMethodPackageLevel = $this->cache->getEntry($fullMethodName);
-        } else {
-            if ($nativeReflection->hasMethod($methodName)) {
-                $methodReflection = $nativeReflection->getMethod($methodName);
-                $isMethodPackageLevel = count($methodReflection->getAttributes(Package::class)) > 0;
-            } else {
-                $isMethodPackageLevel = false;
-            }
-            $this->cache->addEntry($fullMethodName, $isMethodPackageLevel);
-        }
+        $isMethodPackageLevel = $this->cache->get(
+            $fullMethodName,
+            static fn (): bool => $nativeReflection->hasMethod($methodName)
+                && count($nativeReflection->getMethod($methodName)->getAttributes(Package::class)) > 0
+        );
 
-        if ($this->cache->hasEntry($className)) {
-            $isClassPackageLevel = $this->cache->getEntry($className);
-        } else {
-            $isClassPackageLevel = count($nativeReflection->getAttributes(Package::class)) > 0;
-            $this->cache->addEntry($className, $isClassPackageLevel);
-        }
+        $isClassPackageLevel = $this->cache->get(
+            $className,
+            static fn (): bool => count($nativeReflection->getAttributes(Package::class)) > 0
+        );
 
         $isPackageLevel = $isClassPackageLevel || $isMethodPackageLevel;
 

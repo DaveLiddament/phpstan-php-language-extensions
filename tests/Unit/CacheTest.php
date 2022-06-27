@@ -22,21 +22,20 @@ class CacheTest extends TestCase
         $this->cache = new Cache();
     }
 
-    public function testEmptyCache(): void
+    public function testEntriesShouldOnlyBeInitializedOnce(): void
     {
-        $this->assertFalse($this->cache->hasEntry(self::ENTRY_1));
-    }
+        $initializationCount = 0;
 
-    public function testAddValueToCache(): void
-    {
-        $this->cache->addEntry(self::ENTRY_1, self::VALUE_1);
-        $this->assertTrue($this->cache->hasEntry(self::ENTRY_1));
-        $this->assertSame(self::VALUE_1, $this->cache->getEntry(self::ENTRY_1));
-    }
+        $initializer = static function () use (&$initializationCount): string {
+            ++$initializationCount;
 
-    public function testAccessMissingEntry(): void
-    {
-        $this->expectException(\LogicException::class);
-        $this->cache->getEntry(self::ENTRY_1);
+            return self::VALUE_1;
+        };
+
+        self::assertSame(self::VALUE_1, $this->cache->get(self::ENTRY_1, $initializer));
+        self::assertSame(1, $initializationCount);
+
+        self::assertSame(self::VALUE_1, $this->cache->get(self::ENTRY_1, $initializer));
+        self::assertSame(1, $initializationCount);
     }
 }

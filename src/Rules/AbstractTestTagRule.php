@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
+use function count;
 use DaveLiddament\PhpLanguageExtensions\TestTag;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
@@ -45,17 +46,11 @@ abstract class AbstractTestTagRule implements Rule
 
         $fullMethodName = "{$className}::{$methodName}";
 
-        if ($this->cache->hasEntry($fullMethodName)) {
-            $isTestTag = $this->cache->getEntry($fullMethodName);
-        } else {
-            if ($nativeReflection->hasMethod($methodName)) {
-                $methodReflection = $nativeReflection->getMethod($methodName);
-                $isTestTag = count($methodReflection->getAttributes(TestTag::class)) > 0;
-            } else {
-                $isTestTag = false;
-            }
-            $this->cache->addEntry($fullMethodName, $isTestTag);
-        }
+        $isTestTag = $this->cache->get(
+            $fullMethodName,
+            static fn (): bool => $nativeReflection->hasMethod($methodName)
+                && count($nativeReflection->getMethod($methodName)->getAttributes(TestTag::class)) > 0
+        );
 
         if (!$isTestTag) {
             return null;
