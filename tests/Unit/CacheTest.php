@@ -39,4 +39,21 @@ class CacheTest extends TestCase
         $this->expectException(\LogicException::class);
         $this->cache->getEntry(self::ENTRY_1);
     }
+
+    public function testEntriesShouldOnlyBeInitializedOnce(): void
+    {
+        $initializationCount = 0;
+
+        $initializer = static function () use (&$initializationCount): string {
+            ++$initializationCount;
+
+            return self::VALUE_1;
+        };
+
+        self::assertSame(self::VALUE_1, $this->cache->get(self::ENTRY_1, $initializer));
+        self::assertSame(1, $initializationCount);
+
+        self::assertSame(self::VALUE_1, $this->cache->get(self::ENTRY_1, $initializer));
+        self::assertSame(1, $initializationCount);
+    }
 }

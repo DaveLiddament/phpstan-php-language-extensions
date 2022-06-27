@@ -45,26 +45,22 @@ abstract class AbstractFriendRule implements Rule
         $className = $classReflection->getName();
         $fullMethodName = "{$className}::{$methodName}";
 
-        if ($this->cache->hasEntry($fullMethodName)) {
-            $allowedCallingClassesFromMethod = $this->cache->getEntry($fullMethodName);
-        } else {
-            $allowedCallingClassesFromMethod = AttributeValueReader::getAttributeValuesForMethod(
+        $allowedCallingClassesFromMethod = $this->cache->get(
+            $fullMethodName,
+            static fn (): array => AttributeValueReader::getAttributeValuesForMethod(
                 $classReflection->getNativeReflection(),
                 $methodName,
                 Friend::class
-            );
-            $this->cache->addEntry($fullMethodName, $allowedCallingClassesFromMethod);
-        }
+            )
+        );
 
-        if ($this->cache->hasEntry($className)) {
-            $allowedCallingClassesFromClass = $this->cache->getEntry($className);
-        } else {
-            $allowedCallingClassesFromClass = AttributeValueReader::getAttributeValuesForClass(
+        $allowedCallingClassesFromClass = $this->cache->get(
+            $className,
+            static fn (): array => AttributeValueReader::getAttributeValuesForClass(
                 $classReflection->getNativeReflection(),
                 Friend::class
-            );
-            $this->cache->addEntry($className, $allowedCallingClassesFromClass);
-        }
+            )
+        );
 
         $allowedCallingClasses = array_merge($allowedCallingClassesFromClass, $allowedCallingClassesFromMethod);
 
