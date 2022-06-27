@@ -15,30 +15,7 @@ class Cache
     /** @var array<string,TValue> */
     private array $cache = [];
 
-    public function hasEntry(string $key): bool
-    {
-        return array_key_exists($key, $this->cache);
-    }
-
-    /** @return TValue */
-    public function getEntry(string $key)
-    {
-        if (!array_key_exists($key, $this->cache)) {
-            throw new \LogicException('Call hasEntry first');
-        }
-
-        return $this->cache[$key];
-    }
-
-    /** @param TValue $entry */
-    public function addEntry(string $key, $entry): void
-    {
-        $this->cache[$key] = $entry;
-    }
-
     /**
-     * @param Closure():TValue $initializer
-     *
      * @return TValue
      */
     public function get(string $key, Closure $initializer): mixed
