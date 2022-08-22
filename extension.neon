@@ -27,6 +27,22 @@ services:
         - phpstan.rules.rule
 
     -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\CallableFromMethodCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\CallableFromNewCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\CallableFromStaticCallRule
+        tags:
+        - phpstan.rules.rule
+
+
+    -
         class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\PackageMethodCallRule
         tags:
         - phpstan.rules.rule
