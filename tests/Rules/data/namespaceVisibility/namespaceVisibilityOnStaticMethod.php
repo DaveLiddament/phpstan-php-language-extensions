@@ -36,7 +36,7 @@ namespace NamespaceVisibilityOnStaticMethod\SubNamespace {
     {
         public function updater(): void
         {
-            Person::updateName(); // OK: Call to Person::updateName allowed as has namespace visibility and .
+            Person::updateName(); // OK: Call to Person::updateName allowed as has namespace visibility and is a sub-namespace of NamespaceVisibilityOnStaticMethod.
         }
     }
 }
