@@ -16,12 +16,12 @@ use PHPUnit\Framework\TestCase;
 
 class AttributeValueReaderTest extends TestCase
 {
-    /** @return array<int,array{string, array<int,class-string>}> */
+    /** @return array<int,array{string, array<int,class-string>|null}> */
     public function methodDataProvider(): array
     {
         return [
-            ['noAttribute', []],
-            ['__construct', []],
+            ['noAttribute', null],
+            ['__construct', null],
             ['friendWithOneValue', [Foo::class]],
             ['friendWithTwoValues', [Foo::class, Bar::class]],
             ['friendWithOneValueInArray', [Bar::class]],
@@ -33,7 +33,7 @@ class AttributeValueReaderTest extends TestCase
      *
      * @param array<int,class-string> $expectedValues
      */
-    public function testGettingMethodAttributeValues(string $methodName, array $expectedValues): void
+    public function testGettingMethodAttributeValues(string $methodName, ?array $expectedValues): void
     {
         $actualValues = AttributeValueReader::getAttributeValuesForMethod(
             new \ReflectionClass(MethodAttributes::class),
@@ -44,11 +44,11 @@ class AttributeValueReaderTest extends TestCase
         $this->assertEquals($expectedValues, $actualValues);
     }
 
-    /** @return array<int,array{class-string, array<int,class-string>}> */
+    /** @return array<int,array{class-string, array<int,class-string>|null}> */
     public function classDataProvider(): array
     {
         return [
-            [Class0Friends::class, []],
+            [Class0Friends::class, null],
             [Class1Friend::class, [Foo::class]],
             [Class2Friends::class, [Foo::class, Bar::class]],
         ];
@@ -58,9 +58,9 @@ class AttributeValueReaderTest extends TestCase
      * @dataProvider classDataProvider
      *
      * @param class-string $class
-     * @param array<int,class-string> $expectedValues
+     * @param array<int,class-string>|null $expectedValues
      */
-    public function testGettingClassAttributeValues(string $class, array $expectedValues): void
+    public function testGettingClassAttributeValues(string $class, ?array $expectedValues): void
     {
         $actualValues = AttributeValueReader::getAttributeValuesForClass(
             new \ReflectionClass($class),

@@ -22,7 +22,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 abstract class AbstractCallableFromRule implements Rule
 {
     /**
-     * @var Cache<array<int,string>>
+     * @var Cache<array<array-key,string>|null>
      */
     private Cache $cache;
     private TestClassChecker $testClassChecker;
@@ -66,12 +66,18 @@ abstract class AbstractCallableFromRule implements Rule
             $this->cache->addEntry($className, $allowedCallingClassesFromClass);
         }
 
-        $allowedCallingClasses = array_merge($allowedCallingClassesFromClass, $allowedCallingClassesFromMethod);
-
-        if ([] === $allowedCallingClasses) {
+        // If method and class does not have a CallableFrom attribute then finish processing.
+        if ((null === $allowedCallingClassesFromClass) && (null === $allowedCallingClassesFromMethod)) {
             return null;
         }
 
+        $allowedCallingClasses =
+            array_merge(
+                $allowedCallingClassesFromClass ?? [],
+                $allowedCallingClassesFromMethod ?? [],
+            );
+
+        // Allow calls from the same class
         if ($callingClass === $className) {
             return null;
         }

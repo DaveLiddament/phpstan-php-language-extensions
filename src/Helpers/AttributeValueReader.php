@@ -10,15 +10,15 @@ class AttributeValueReader
      * @param \ReflectionClass<object> $reflectionClass
      * @param class-string $attributeClassName
      *
-     * @return array<int, string>
+     * @return array<int, string>|null
      */
     public static function getAttributeValuesForMethod(
         \ReflectionClass $reflectionClass,
         string $methodName,
         string $attributeClassName,
-    ): array {
+    ): ?array {
         if (!$reflectionClass->hasMethod($methodName)) {
-            return [];
+            return null;
         }
         $reflectionMethod = $reflectionClass->getMethod($methodName);
 
@@ -26,23 +26,23 @@ class AttributeValueReader
             return $attribute->getArguments();
         }
 
-        return [];
+        return null;
     }
 
     /**
      * @param \ReflectionClass<object> $reflectionClass
      * @param class-string $attributeClassName
      *
-     * @return array<int, string>
+     * @return array<int|string, string>|null
      */
     public static function getAttributeValuesForClass(
         \ReflectionClass $reflectionClass,
         string $attributeClassName,
-    ): array {
+    ): ?array {
         foreach ($reflectionClass->getAttributes($attributeClassName) as $attribute) {
             return $attribute->getArguments();
         }
 
-        return [];
+        return null;
     }
 }
