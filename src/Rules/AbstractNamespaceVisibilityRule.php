@@ -50,44 +50,24 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
         if ($this->cache->hasEntry($fullMethodName)) {
             $methodNamespaceVisibilitySetting = $this->cache->getEntry($fullMethodName);
         } else {
-            if ($nativeReflection->hasMethod($methodName)) {
-                $methodReflection = $nativeReflection->getMethod($methodName);
-                if (count($methodReflection->getAttributes(NamespaceVisibility::class)) > 0) {
-                    $methodNamespaceVisibilitySetting = NamespaceVisibilitySetting::namespaceVisibility(
-                        $nativeReflection->getNamespaceName(),
-                        false
-                    );
-                } else {
-                    $methodNamespaceVisibilitySetting = NamespaceVisibilitySetting::noNamespaceVisibilityAttribute();
-                }
-            } else {
-                $methodNamespaceVisibilitySetting = NamespaceVisibilitySetting::noNamespaceVisibilityAttribute();
-            }
+            $methodNamespaceVisibilitySetting = NamespaceVisibilitySettingsParser::getValuesFromMethod(
+                $nativeReflection,
+                $methodName,
+            );
             $this->cache->addEntry($fullMethodName, $methodNamespaceVisibilitySetting);
         }
-
 
         if ($methodNamespaceVisibilitySetting->hasNamespaceAttribute()) {
             $namespaceVisibilitySetting = $methodNamespaceVisibilitySetting;
         } else {
-
             if ($this->cache->hasEntry($className)) {
                 $classNamespaceVisibilitySetting = $this->cache->getEntry($className);
             } else {
-                if (count($nativeReflection->getAttributes(NamespaceVisibility::class)) > 0) {
-                    $classNamespaceVisibilitySetting = NamespaceVisibilitySetting::namespaceVisibility(
-                        $nativeReflection->getNamespaceName(),
-                        false,
-                    );
-                } else {
-                    $classNamespaceVisibilitySetting = NamespaceVisibilitySetting::noNamespaceVisibilityAttribute();
-                }
+                $classNamespaceVisibilitySetting = NamespaceVisibilitySettingsParser::getValuesFromClass($nativeReflection);
                 $this->cache->addEntry($className, $classNamespaceVisibilitySetting);
             }
-
             $namespaceVisibilitySetting = $classNamespaceVisibilitySetting;
         }
-
 
         if (!$namespaceVisibilitySetting->hasNamespaceAttribute()) {
             return null;
@@ -100,7 +80,7 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
 
         // Check if sub namespace (if allowed)
         $excludeSubNamespaces = $namespaceVisibilitySetting->isExcludeSubNamespaces();
-        if (!$excludeSubNamespaces) {
+        if (!$excludeSubNamespaces && null !== $scope->getNamespace()) {
             if (SubNamespaceChecker::isSubNamespace(
                 namespace: $scope->getNamespace(),
                 namespaceToCheckAgainst: $namespaceVisibilitySetting->getNamespace(),
@@ -112,9 +92,9 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
         if ($this->testClassChecker->isTestClass($scope->getNamespace(), $scope->getClassReflection()?->getName())) {
             return null;
         }
-        
-        $callableFromNamespace = $namespaceVisibilitySetting->getNamespace() ?? '<none>';
-        $subNamespaces =  ($excludeSubNamespaces === false) ? " and sub namespaces of {$callableFromNamespace}" : '';
+
+        $callableFromNamespace = $namespaceVisibilitySetting->getNamespace();
+        $subNamespaces = (false === $excludeSubNamespaces) ? " and sub-namespaces of {$callableFromNamespace}" : '';
         $message = sprintf(
             '%s has Namespace Visibility, it can only be called from namespace %s%s',
             $fullMethodName,
