@@ -61,6 +61,22 @@ services:
         tags:
         - phpstan.rules.rule
 
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\NamespaceVisibilityMethodCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\NamespaceVisibilityNewCallRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\NamespaceVisibilityStaticCallRule
+        tags:
+        - phpstan.rules.rule
+
+
 parametersSchema:
     phpLanguageExtensions: structure([
         testNamespace: schema(string(), nullable())
