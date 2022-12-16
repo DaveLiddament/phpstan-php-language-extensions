@@ -10,10 +10,6 @@ class Success extends Response // OK
 {
 }
 
-class Failed extends Response // OK
-{
-}
-
 #[Sealed(Success::class, Failed::class)]
 class Response
 {
