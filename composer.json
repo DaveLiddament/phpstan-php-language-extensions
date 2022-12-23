@@ -4,7 +4,7 @@
   "keywords": ["static analysis", "phpstan", "package attribute", "friend attribute"],
   "type": "phpstan-extension",
   "require": {
-    "php": "^8",
+    "php": ">=8.0 <8.3",
     "phpstan/phpstan": "^1.3",
     "dave-liddament/php-language-extensions": "^0.2.1"
   },
@@ -36,7 +36,10 @@
   "scripts": {
     "composer-validate": "@composer validate --no-check-all --strict",
     "cs-fix": "php-cs-fixer fix",
-    "cs": "php-cs-fixer fix --dry-run -v",
+    "cs": [
+      "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+      "php-cs-fixer fix --dry-run -v"
+    ],
     "analyse": "phpstan analyse",
     "lint": "parallel-lint src tests",
     "test": "phpunit",
