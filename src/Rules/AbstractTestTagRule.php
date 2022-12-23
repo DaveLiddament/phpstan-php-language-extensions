@@ -16,6 +16,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @template TNodeType of \PhpParser\Node
+ *
  * @implements Rule<TNodeType>
  */
 abstract class AbstractTestTagRule implements Rule

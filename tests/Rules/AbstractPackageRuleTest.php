@@ -9,6 +9,7 @@ use PHPStan\Testing\RuleTestCase;
 
 /**
  * @template TRule of Rule
+ *
  * @extends RuleTestCase<TRule>
  */
 abstract class AbstractPackageRuleTest extends RuleTestCase
