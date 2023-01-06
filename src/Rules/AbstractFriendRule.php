@@ -17,6 +17,7 @@ use PHPStan\Rules\RuleErrorBuilder;
 
 /**
  * @template TNodeType of \PhpParser\Node
+ *
  * @implements Rule<TNodeType>
  */
 abstract class AbstractFriendRule implements Rule
