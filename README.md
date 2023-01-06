@@ -13,8 +13,10 @@
 This is an extension for [PHPStan](https://phpstan.org) for adding analysis for [PHP Language Extensions](https://github.com/DaveLiddament/php-language-extensions).
 
 **Language feature added:**
-- [package](https://github.com/DaveLiddament/php-language-extensions#package) 
-- [friend](https://github.com/DaveLiddament/php-language-extensions#friend)
+- [Friend](https://github.com/DaveLiddament/php-language-extensions#friend)
+- [Injectable Version](https://github.com/DaveLiddament/php-language-extensions#injectableversion)
+- [Package](https://github.com/DaveLiddament/php-language-extensions#package) 
+- [Test Tag](https://github.com/DaveLiddament/php-language-extensions#testtag)
 
 ## Installation
 
