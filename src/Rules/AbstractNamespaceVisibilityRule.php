@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
 use DaveLiddament\PhpLanguageExtensions\NamespaceVisibility;
+use DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders\AttributeFinder;
+use DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders\AttributeValueReader;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\SubNamespaceChecker;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
 use PHPStan\Analyser\Scope;
-use PHPStan\BetterReflection\Reflection\Adapter\ReflectionClass;
-use PHPStan\BetterReflection\Reflection\Adapter\ReflectionEnum;
-use PHPStan\BetterReflection\Reflection\Adapter\ReflectionMethod;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
-use PHPStan\Type\Constant\ConstantBooleanType;
-use PHPStan\Type\Constant\ConstantStringType;
 
 /**
  * @template TNodeType of \PhpParser\Node
@@ -57,12 +54,8 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
         if ($this->cache->hasEntry($fullMethodName)) {
             $methodNamespaceVisibilitySetting = $this->cache->getEntry($fullMethodName);
         } else {
-            if ($nativeReflection->hasMethod($methodName)) {
-                $methodReflection = $nativeReflection->getMethod($methodName);
-                $methodNamespaceVisibilitySetting = $this->getNamespaceVisibilitiesSettings($methodReflection, $scope, $classNamespace);
-            } else {
-                $methodNamespaceVisibilitySetting = NamespaceVisibilitySetting::noNamespaceVisibilityAttribute();
-            }
+            $attribute = AttributeFinder::getAttributeOnMethod($nativeReflection, $methodName, NamespaceVisibility::class);
+            $methodNamespaceVisibilitySetting = $this->getNamespaceVisibilitiesSettings($attribute, $classNamespace);
             $this->cache->addEntry($fullMethodName, $methodNamespaceVisibilitySetting);
         }
 
@@ -73,7 +66,8 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
             if ($this->cache->hasEntry($className)) {
                 $classNamespaceVisibilitySetting = $this->cache->getEntry($className);
             } else {
-                $classNamespaceVisibilitySetting = $this->getNamespaceVisibilitiesSettings($nativeReflection, $scope, $classNamespace);
+                $attribute = AttributeFinder::getAttributeOnClass($nativeReflection, NamespaceVisibility::class);
+                $classNamespaceVisibilitySetting = $this->getNamespaceVisibilitiesSettings($attribute, $classNamespace);
                 $this->cache->addEntry($className, $classNamespaceVisibilitySetting);
             }
 
@@ -117,37 +111,17 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
         return RuleErrorBuilder::message($message)->build();
     }
 
-    /** @param ReflectionMethod|ReflectionClass|ReflectionEnum $reflection */
     private function getNamespaceVisibilitiesSettings(
-        $reflection,
-        Scope $scope,
+        ?\ReflectionAttribute $attribute,
         ?string $namespace,
     ): NamespaceVisibilitySetting {
-        $attributes = $reflection->getAttributes(NamespaceVisibility::class);
-        if (1 !== count($attributes)) {
+        if (null === $attribute) {
             return NamespaceVisibilitySetting::noNamespaceVisibilityAttribute();
         }
 
-        $attribute = $attributes[0];
-
-        $arguments = $attribute->getArgumentsExpressions();
-        $excludesSubNamespace = false;
-        $excludesSubNamespacesExpr = $arguments['excludeSubNamespaces'] ?? null;
-        if (null !== $excludesSubNamespacesExpr) {
-            $excludedSubNamespaceType = $scope->getType($excludesSubNamespacesExpr);
-            if ($excludedSubNamespaceType instanceof ConstantBooleanType) {
-                $excludesSubNamespace = $excludedSubNamespaceType->getValue();
-            }
-        }
-
-        $namespaceExpr = $arguments['namespace'] ?? null;
-        if (null !== $namespaceExpr) {
-            $namespaceType = $scope->getType($namespaceExpr);
-            if ($namespaceType instanceof ConstantStringType) {
-                $namespace = $namespaceType->getValue();
-            }
-        }
-
-        return NamespaceVisibilitySetting::namespaceVisibility($namespace, $excludesSubNamespace);
+        return NamespaceVisibilitySetting::namespaceVisibility(
+            AttributeValueReader::getString($attribute, 0, 'namespace') ?? $namespace,
+            AttributeValueReader::getBool($attribute, 1, 'excludeSubNamespaces') ?? false,
+        );
     }
 }
