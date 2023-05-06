@@ -111,6 +111,9 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
         return RuleErrorBuilder::message($message)->build();
     }
 
+    /**
+     * @param \ReflectionAttribute<object>|null $attribute
+     */
     private function getNamespaceVisibilitiesSettings(
         ?\ReflectionAttribute $attribute,
         ?string $namespace,

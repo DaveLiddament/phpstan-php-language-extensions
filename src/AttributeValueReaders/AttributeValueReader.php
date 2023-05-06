@@ -6,7 +6,11 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders;
 
 class AttributeValueReader
 {
-    /** @return list<string> */
+    /**
+     * @param \ReflectionAttribute<object> $attribute
+     *
+     * @return list<string>
+     */
     public static function getStrings(\ReflectionAttribute $attribute): array
     {
         $values = [];
@@ -19,6 +23,9 @@ class AttributeValueReader
         return $values;
     }
 
+    /**
+     * @param \ReflectionAttribute<object> $attribute
+     */
     public static function getString(\ReflectionAttribute $attribute, int $position, string $parameterName): ?string
     {
         $arguments = $attribute->getArguments();
@@ -38,6 +45,9 @@ class AttributeValueReader
         return $value;
     }
 
+    /**
+     * @param \ReflectionAttribute<object> $attribute
+     */
     public static function getBool(\ReflectionAttribute $attribute, int $position, string $parameterName): ?bool
     {
         $arguments = $attribute->getArguments();

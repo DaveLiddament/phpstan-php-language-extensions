@@ -7,7 +7,12 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders;
 final class AttributeFinder
 {
     /**
-     * @param class-string $attributeName
+     * @template T of object
+     *
+     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     * @param class-string<T> $attributeName
+     *
+     * @return \ReflectionAttribute<T>|null
      */
     public static function getAttributeOnClass(
         \ReflectionClass|\ReflectionEnum $class,
@@ -21,7 +26,14 @@ final class AttributeFinder
         return $attributes[0];
     }
 
-    /** @param class-string $attributeName */
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $attributeName
+     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     *
+     * @return \ReflectionAttribute<T>|null
+     */
     public static function getAttributeOnMethod(
         \ReflectionClass|\ReflectionEnum $class,
         string $methodName,
@@ -41,6 +53,10 @@ final class AttributeFinder
         return $attributes[0];
     }
 
+    /**
+     * @param class-string $attributeName
+     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     */
     public static function hasAttributeOnClass(
         \ReflectionClass|\ReflectionEnum $class,
         string $attributeName,
@@ -50,6 +66,10 @@ final class AttributeFinder
         return 1 === count($attributes);
     }
 
+    /**
+     * @param class-string $attributeName
+     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     */
     public static function hasAttributeOnMethod(
         \ReflectionClass|\ReflectionEnum $class,
         string $methodName,
