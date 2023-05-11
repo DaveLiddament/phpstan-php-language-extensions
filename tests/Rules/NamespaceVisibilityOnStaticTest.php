@@ -33,4 +33,26 @@ class NamespaceVisibilityOnStaticTest extends AbstractNamespaceVisibilityRuleTes
             ],
         );
     }
+
+    public function testExcludeSubNamespace(): void
+    {
+        $this->assertErrorsReported(
+            __DIR__.'/data/namespaceVisibility/namespaceVisibilityOnStaticMethodExcludeSubNamespaces.php',
+            [
+                [
+                    26,
+                    'NamespaceVisibilityOnStaticMethodExcludeSubNamespaces\Person::updateName',
+                    'NamespaceVisibilityOnStaticMethodExcludeSubNamespaces',
+                    false,
+                ],
+            ],
+        );
+    }
+
+    public function testForDifferentNamespace(): void
+    {
+        $this->assertNoErrorsReported(
+            __DIR__.'/data/namespaceVisibility/namespaceVisibilityOnStaticMethodForDifferentNamespaces.php',
+        );
+    }
 }
