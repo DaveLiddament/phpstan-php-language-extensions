@@ -21,7 +21,7 @@ class TestConfig
 
     public function __construct(
         string $mode,
-        ?string $testNamespace = null,
+        string $testNamespace = null,
     ) {
         if (!in_array(
             needle: $mode,
