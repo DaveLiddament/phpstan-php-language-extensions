@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bffe7ff2236a10ee24fedf20071c5dc",
+    "content-hash": "0eaddf52a4ba24fdc715efd786c13846",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
@@ -336,6 +336,52 @@
                 }
             ],
             "time": "2022-02-25T21:32:43+00:00"
+        },
+        {
+            "name": "dave-liddament/phpstan-rule-test-helper",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DaveLiddament/phpstan-rule-test-helper.git",
+                "reference": "d7ea4a577280e06fb9923918f4538e88650b0e65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/d7ea4a577280e06fb9923918f4538e88650b0e65",
+                "reference": "d7ea4a577280e06fb9923918f4538e88650b0e65",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0 <8.3",
+                "phpstan/phpstan": "^1.6"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.7",
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DaveLiddament\\PhpstanRuleTestHelper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Liddament",
+                    "email": "dave@lampbristol.com"
+                }
+            ],
+            "description": "Library to help make testing of PHPStan rules easier",
+            "support": {
+                "issues": "https://github.com/DaveLiddament/phpstan-rule-test-helper/issues",
+                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.1.0"
+            },
+            "time": "2022-12-29T12:24:21+00:00"
         },
         {
             "name": "doctrine/annotations",
