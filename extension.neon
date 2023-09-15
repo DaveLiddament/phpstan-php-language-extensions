@@ -76,6 +76,11 @@ services:
         tags:
         - phpstan.rules.rule
 
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\OverrideRule
+        tags:
+        - phpstan.rules.rule
+
 
 parametersSchema:
     phpLanguageExtensions: structure([
