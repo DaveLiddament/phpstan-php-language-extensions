@@ -73,12 +73,7 @@ class InjectableVersionRule implements Rule
                 : $type->getReferencedClasses();
 
             foreach ($classesToCheck as $className) {
-                if ($this->cache->hasEntry($className)) {
-                    $classToUse = $this->cache->getEntry($className);
-                } else {
-                    $classToUse = $this->checkClass($className);
-                    $this->cache->addEntry($className, $classToUse);
-                }
+                $classToUse = $this->cache->get($className, fn () => $this->checkClass($className));
 
                 if (null !== $classToUse) {
                     $message = sprintf(
