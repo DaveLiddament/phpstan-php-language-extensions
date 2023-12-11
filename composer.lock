@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b11f73be12ddef3c95ec65af558da972",
+    "content-hash": "880ed4470b85c7916512be08756f0be8",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/php-language-extensions.git",
-                "reference": "11042ad3bfdc3db7019bfe09627cfa2a6d3c0d07"
+                "reference": "2b03c13bf79a4cfab688e753833a016048e9c9f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/11042ad3bfdc3db7019bfe09627cfa2a6d3c0d07",
-                "reference": "11042ad3bfdc3db7019bfe09627cfa2a6d3c0d07",
+                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/2b03c13bf79a4cfab688e753833a016048e9c9f4",
+                "reference": "2b03c13bf79a4cfab688e753833a016048e9c9f4",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.0.0 || ~8.1.0 || ~8.2.0"
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
@@ -54,9 +54,9 @@
             ],
             "support": {
                 "issues": "https://github.com/DaveLiddament/php-language-extensions/issues",
-                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.5.0"
+                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.6.0"
             },
-            "time": "2023-09-15T16:04:51+00:00"
+            "time": "2023-12-07T12:29:08+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -342,20 +342,20 @@
         },
         {
             "name": "dave-liddament/phpstan-rule-test-helper",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/phpstan-rule-test-helper.git",
-                "reference": "d7ea4a577280e06fb9923918f4538e88650b0e65"
+                "reference": "4dc5854388170d82b3effb83c6e04dff955ea761"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/d7ea4a577280e06fb9923918f4538e88650b0e65",
-                "reference": "d7ea4a577280e06fb9923918f4538e88650b0e65",
+                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/4dc5854388170d82b3effb83c6e04dff955ea761",
+                "reference": "4dc5854388170d82b3effb83c6e04dff955ea761",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0 <8.3",
+                "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
                 "phpstan/phpstan": "^1.6"
             },
             "require-dev": {
@@ -382,9 +382,9 @@
             "description": "Library to help make testing of PHPStan rules easier",
             "support": {
                 "issues": "https://github.com/DaveLiddament/phpstan-rule-test-helper/issues",
-                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.1.0"
+                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.2.0"
             },
-            "time": "2022-12-29T12:24:21+00:00"
+            "time": "2023-12-10T23:40:03+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -3713,10 +3713,10 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
-    "prefer-lowest": true,
+    "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0 <8.3"
+        "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
