@@ -88,7 +88,7 @@ class InjectableVersionRule implements Rule
                         $classToUse
                     );
 
-                    $errors[] = RuleErrorBuilder::message($message)->build();
+                    $errors[] = RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.injectableVersion')->build();
                 }
             }
         }

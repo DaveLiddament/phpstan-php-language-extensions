@@ -108,7 +108,7 @@ abstract class AbstractNamespaceVisibilityRule implements Rule
             $subNamespaces,
         );
 
-        return RuleErrorBuilder::message($message)->build();
+        return RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.namespace')->build();
     }
 
     /**

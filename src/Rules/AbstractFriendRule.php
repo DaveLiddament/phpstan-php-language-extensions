@@ -92,6 +92,6 @@ abstract class AbstractFriendRule implements Rule
             implode('|', $allowedCallingClasses)
         );
 
-        return RuleErrorBuilder::message($message)->build();
+        return RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.friend')->build();
     }
 }

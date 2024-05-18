@@ -47,7 +47,7 @@ final class OverrideRule implements Rule
             }
 
             $message = "Method {$methodName} has the Override attribute, but no matching parent method exists";
-            $errors[] = RuleErrorBuilder::message($message)->line($method->getLine())->build();
+            $errors[] = RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.override')->line($method->getLine())->build();
         }
 
         return $errors;
