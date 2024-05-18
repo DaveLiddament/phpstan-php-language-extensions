@@ -71,6 +71,6 @@ abstract class AbstractTestTagRule implements Rule
             $fullMethodName,
         );
 
-        return RuleErrorBuilder::message($message)->build();
+        return RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.testTag')->build();
     }
 }
