@@ -2,7 +2,7 @@
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions;
 
-#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD | \Attribute::TARGET_FUNCTION)]
+#[\Attribute(\Attribute::TARGET_METHOD)]
 final class MustUseResult
 {
 }
