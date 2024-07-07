@@ -7,6 +7,7 @@ use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\MustUseResult;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 
@@ -18,8 +19,9 @@ final class MustUseResultRule implements Rule
     /** @var Cache<bool> */
     private Cache $cache;
 
-    public function __construct()
-    {
+    public function __construct(
+        private ReflectionProvider $reflectionProvider,
+    ) {
         $this->cache = new Cache();
     }
 
@@ -32,7 +34,19 @@ final class MustUseResultRule implements Rule
     public function processNode(Node $node, Scope $scope): array
     {
         $expr = $node->expr;
-        if (!$expr instanceof Node\Expr\MethodCall) {
+
+        if ($expr instanceof Node\Expr\MethodCall) {
+            $classReflections = $scope->getType($expr->var)->getObjectClassReflections();
+        } elseif ($expr instanceof Node\Expr\StaticCall) {
+            $class = $expr->class;
+            if (!$class instanceof Node\Name) {
+                return [];
+            }
+
+            $classReflections = [
+                $this->reflectionProvider->getClass($class->toCodeString()),
+            ];
+        } else {
             return [];
         }
 
@@ -42,8 +56,6 @@ final class MustUseResultRule implements Rule
         }
 
         $methodName = $methodNameNode->toLowerString();
-
-        $classReflections = $scope->getType($expr->var)->getObjectClassReflections();
 
         foreach ($classReflections as $classReflection) {
             $className = $classReflection->getName();

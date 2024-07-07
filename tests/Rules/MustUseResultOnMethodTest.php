@@ -15,13 +15,20 @@ final class MustUseResultOnMethodTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
-        return new MustUseResultRule();
+        return new MustUseResultRule($this->createReflectionProvider());
     }
 
     public function testMustUseResultRuleOnMethod(): void
     {
         $this->assertIssuesReported(
             __DIR__.'/data/mustUseResult/mustUseResultOnMethod.php',
+        );
+    }
+
+    public function testMustUseResultRuleOnStaticMethod(): void
+    {
+        $this->assertIssuesReported(
+            __DIR__.'/data/mustUseResult/mustUseResultOnStaticMethod.php',
         );
     }
 
