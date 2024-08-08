@@ -1,7 +1,7 @@
 {
   "name": "dave-liddament/phpstan-php-language-extensions",
   "description": "PHPStan rules to implement the language extensions provided by the php-language-extensions",
-  "keywords": ["static analysis", "phpstan", "package attribute", "friend attribute"],
+  "keywords": ["static analysis", "phpstan", "namespace visibility attribute", "friend attribute"],
   "type": "phpstan-extension",
   "require": {
     "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
