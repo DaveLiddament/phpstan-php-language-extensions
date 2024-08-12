@@ -6,10 +6,12 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagNewCallRule;
+use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
+use DaveLiddament\PhpstanRuleTestHelper\ErrorMessageFormatter;
 use PHPStan\Rules\Rule;
 
-/** @extends AbstractTestTagRuleTest<TestTagNewCallRule> */
-class TestTagOnConstructorTest extends AbstractTestTagRuleTest
+/** @extends AbstractRuleTestCase<TestTagNewCallRule> */
+class TestTagOnConstructorTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -21,22 +23,11 @@ class TestTagOnConstructorTest extends AbstractTestTagRuleTest
 
     public function testMethodCall(): void
     {
-        $this->assertErrorsReported(
-            __DIR__.'/data/testTag/testTagOnConstructor.php',
-            [
-                [
-                    16,
-                    'TestTagOnConstructor\Person::__construct',
-                ],
-                [
-                    21,
-                    'TestTagOnConstructor\Person::__construct',
-                ],
-                [
-                    29,
-                    'TestTagOnConstructor\Person::__construct',
-                ],
-            ],
-        );
+        $this->assertIssuesReported(__DIR__.'/data/testTag/testTagOnConstructor.php');
+    }
+
+    protected function getErrorFormatter(): ErrorMessageFormatter|string
+    {
+        return 'TestTagOnConstructor\Person::__construct is a test tag and can only be called from test code';
     }
 }

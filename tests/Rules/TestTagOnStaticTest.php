@@ -6,10 +6,11 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagStaticCallRule;
+use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
 use PHPStan\Rules\Rule;
 
-/** @extends AbstractTestTagRuleTest<TestTagStaticCallRule> */
-class TestTagOnStaticTest extends AbstractTestTagRuleTest
+/** @extends AbstractRuleTestCase<TestTagStaticCallRule> */
+final class TestTagOnStaticTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -21,26 +22,11 @@ class TestTagOnStaticTest extends AbstractTestTagRuleTest
 
     public function testMethodCall(): void
     {
-        $this->assertErrorsReported(
-            __DIR__.'/data/testTag/testTagOnStaticMethod.php',
-            [
-                [
-                    17,
-                    'TestTagOnStaticMethod\Person::updateName',
-                ],
-                [
-                    22,
-                    'TestTagOnStaticMethod\Person::updateName',
-                ],
-                [
-                    30,
-                    'TestTagOnStaticMethod\Person::updateName',
-                ],
-                [
-                    34,
-                    'TestTagOnStaticMethod\Person::updateName',
-                ],
-            ],
-        );
+        $this->assertIssuesReported(__DIR__.'/data/testTag/testTagOnStaticMethod.php');
+    }
+
+    protected function getErrorFormatter(): string
+    {
+        return 'TestTagOnStaticMethod\Person::updateName is a test tag and can only be called from test code';
     }
 }

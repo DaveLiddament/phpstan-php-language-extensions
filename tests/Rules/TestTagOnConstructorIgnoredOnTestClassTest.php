@@ -6,10 +6,11 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagNewCallRule;
+use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
 use PHPStan\Rules\Rule;
 
-/** @extends AbstractTestTagRuleTest<TestTagNewCallRule> */
-class TestTagOnConstructorIgnoredOnTestClassTest extends AbstractTestTagRuleTest
+/** @extends AbstractRuleTestCase<TestTagNewCallRule> */
+class TestTagOnConstructorIgnoredOnTestClassTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -21,7 +22,7 @@ class TestTagOnConstructorIgnoredOnTestClassTest extends AbstractTestTagRuleTest
 
     public function testMethodCall(): void
     {
-        $this->assertNoErrorsReported(
+        $this->assertIssuesReported(
             __DIR__.'/data/testTag/testTagOnConstructorIgnoredInTestClass.php',
         );
     }

@@ -6,10 +6,11 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Config\TestConfig;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\TestTagStaticCallRule;
+use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
 use PHPStan\Rules\Rule;
 
-/** @extends AbstractTestTagRuleTest<TestTagStaticCallRule> */
-class TestTagOnStaticIgnoredOnTestClassTest extends AbstractTestTagRuleTest
+/** @extends AbstractRuleTestCase<TestTagStaticCallRule> */
+class TestTagOnStaticIgnoredOnTestClassTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -21,8 +22,6 @@ class TestTagOnStaticIgnoredOnTestClassTest extends AbstractTestTagRuleTest
 
     public function testMethodCall(): void
     {
-        $this->assertNoErrorsReported(
-            __DIR__.'/data/testTag/testTagOnStaticMethodIgnoredInTestClass.php',
-        );
+        $this->assertIssuesReported(__DIR__.'/data/testTag/testTagOnStaticMethodIgnoredInTestClass.php');
     }
 }
