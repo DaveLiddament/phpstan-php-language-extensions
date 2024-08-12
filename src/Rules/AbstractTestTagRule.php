@@ -40,25 +40,40 @@ abstract class AbstractTestTagRule implements Rule
         string $class,
         string $methodName,
     ): ?RuleError {
+        $callingClass = $scope->getClassReflection()?->getName();
+
         $classReflection = $this->reflectionProvider->getClass($class);
         $className = $classReflection->getName();
         $nativeReflection = $classReflection->getNativeReflection();
 
         $fullMethodName = "{$className}::{$methodName}";
 
+        if ($this->cache->hasEntry($className)) {
+            $isTestTagOnClass = $this->cache->getEntry($className);
+        } else {
+            $isTestTagOnClass = count($nativeReflection->getAttributes(TestTag::class)) > 0;
+            $this->cache->addEntry($className, $isTestTagOnClass);
+        }
+
         if ($this->cache->hasEntry($fullMethodName)) {
-            $isTestTag = $this->cache->getEntry($fullMethodName);
+            $isTestTagOnMethod = $this->cache->getEntry($fullMethodName);
         } else {
             if ($nativeReflection->hasMethod($methodName)) {
                 $methodReflection = $nativeReflection->getMethod($methodName);
-                $isTestTag = count($methodReflection->getAttributes(TestTag::class)) > 0;
+                $isTestTagOnMethod = count($methodReflection->getAttributes(TestTag::class)) > 0;
             } else {
-                $isTestTag = false;
+                $isTestTagOnMethod = false;
             }
-            $this->cache->addEntry($fullMethodName, $isTestTag);
+            $this->cache->addEntry($fullMethodName, $isTestTagOnMethod);
         }
 
-        if (!$isTestTag) {
+        $hasTestTag = $isTestTagOnClass || $isTestTagOnMethod;
+
+        if (!$hasTestTag) {
+            return null;
+        }
+
+        if ($isTestTagOnClass && ($className === $callingClass)) {
             return null;
         }
 
