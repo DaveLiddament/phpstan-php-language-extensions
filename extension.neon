@@ -81,6 +81,17 @@ services:
         tags:
         - phpstan.rules.rule
 
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\MustUseResultRule
+        tags:
+        - phpstan.rules.rule
+
+    -
+        class: DaveLiddament\PhpstanPhpLanguageExtensions\Rules\RestrictTraitToRule
+        tags:
+        - phpstan.rules.rule
+
+
 
 parametersSchema:
     phpLanguageExtensions: structure([
