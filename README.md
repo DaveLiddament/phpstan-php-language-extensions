@@ -14,6 +14,7 @@ This is an extension for [PHPStan](https://phpstan.org) for adding analysis for 
 **Language feature added:**
 - [Friend](https://github.com/DaveLiddament/php-language-extensions#friend)
 - [Injectable Version](https://github.com/DaveLiddament/php-language-extensions#injectableVersion)
+- [MustUseResult](https://github.com/DaveLiddament/php-language-extensions#mustUseResult)
 - [NamespaceVisibility](https://github.com/DaveLiddament/php-language-extensions#namespaceVisibility)
 - [Package](https://github.com/DaveLiddament/php-language-extensions#package) 
 - [Test Tag](https://github.com/DaveLiddament/php-language-extensions#testtag)
