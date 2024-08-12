@@ -10,7 +10,7 @@ use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
 use PHPStan\Rules\Rule;
 
 /** @extends AbstractRuleTestCase<TestTagStaticCallRule> */
-class TestTagOnStaticIgnoredOnTestClassTest extends AbstractRuleTestCase
+final class TestTagClassOnStaticTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -22,6 +22,11 @@ class TestTagOnStaticIgnoredOnTestClassTest extends AbstractRuleTestCase
 
     public function testMethodCall(): void
     {
-        $this->assertIssuesReported(__DIR__.'/data/testTag/testTagOnStaticMethodIgnoredInTestClass.php');
+        $this->assertIssuesReported(__DIR__.'/data/testTag/testTagClassOnStaticMethod.php');
+    }
+
+    protected function getErrorFormatter(): string
+    {
+        return 'TestTagClassOnStaticMethod\Person::updateName is a test tag and can only be called from test code';
     }
 }
