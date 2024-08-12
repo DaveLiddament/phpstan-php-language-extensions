@@ -17,6 +17,7 @@ This is an extension for [PHPStan](https://phpstan.org) for adding analysis for 
 - [MustUseResult](https://github.com/DaveLiddament/php-language-extensions#mustUseResult)
 - [NamespaceVisibility](https://github.com/DaveLiddament/php-language-extensions#namespaceVisibility)
 - [Package](https://github.com/DaveLiddament/php-language-extensions#package) 
+- [Restrict Trait To](https://github.com/DaveLiddament/php-language-extensions#retrictTraitTo)
 - [Test Tag](https://github.com/DaveLiddament/php-language-extensions#testtag)
 
 ## Installation
