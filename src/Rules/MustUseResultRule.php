@@ -74,7 +74,9 @@ final class MustUseResultRule implements Rule
 
             if ($mustUseResult) {
                 return [
-                    RuleErrorBuilder::message('Result returned by method must be used')->build(),
+                    RuleErrorBuilder::message('Result returned by method must be used')
+                        ->identifier('phpExtensionLibrary.mustUseResult')
+                        ->build(),
                 ];
             }
         }
