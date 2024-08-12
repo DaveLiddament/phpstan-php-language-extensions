@@ -23,6 +23,7 @@ return $config
             'phpdoc_align' => false,
             'phpdoc_to_comment' => false,
             'native_function_invocation' => false,
+            'nullable_type_declaration_for_default_null_value' => true,
         ]
     )
     ->setFinder($finder)
