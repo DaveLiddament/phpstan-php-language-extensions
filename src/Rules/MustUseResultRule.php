@@ -2,9 +2,9 @@
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
+use DaveLiddament\PhpLanguageExtensions\MustUseResult;
 use DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders\AttributeFinder;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
-use DaveLiddament\PhpstanPhpLanguageExtensions\MustUseResult;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;

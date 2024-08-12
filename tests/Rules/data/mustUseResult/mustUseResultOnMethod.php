@@ -3,7 +3,7 @@
 namespace MustUseResultOnMethod {
 
 
-    use DaveLiddament\PhpstanPhpLanguageExtensions\MustUseResult;
+    use DaveLiddament\PhpLanguageExtensions\MustUseResult;
 
     class AClass {
 

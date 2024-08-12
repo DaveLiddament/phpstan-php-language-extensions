@@ -6,8 +6,6 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanPhpLanguageExtensions\Rules\MustUseResultRule;
 use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
-use DaveLiddament\PhpstanRuleTestHelper\ConstantStringErrorMessageFormatter;
-use DaveLiddament\PhpstanRuleTestHelper\ErrorMessageFormatter;
 use PHPStan\Rules\Rule;
 
 /** @extends AbstractRuleTestCase<MustUseResultRule> */
@@ -32,8 +30,8 @@ final class MustUseResultOnMethodTest extends AbstractRuleTestCase
         );
     }
 
-    protected function getErrorFormatter(): ErrorMessageFormatter
+    protected function getErrorFormatter(): string
     {
-        return new ConstantStringErrorMessageFormatter('Result returned by method must be used');
+        return 'Result returned by method must be used';
     }
 }
