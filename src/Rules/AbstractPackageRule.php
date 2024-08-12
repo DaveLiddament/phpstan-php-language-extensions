@@ -86,6 +86,6 @@ abstract class AbstractPackageRule implements Rule
             $scope->getNamespace() ?? '<none>'
         );
 
-        return RuleErrorBuilder::message($message)->build();
+        return RuleErrorBuilder::message($message)->identifier('phpExtensionLibrary.package')->build();
     }
 }

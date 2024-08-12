@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "880ed4470b85c7916512be08756f0be8",
+    "content-hash": "44a0a3837d85fb45c81ff033206e3b22",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
-            "version": "0.6.0",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/php-language-extensions.git",
-                "reference": "2b03c13bf79a4cfab688e753833a016048e9c9f4"
+                "reference": "99e3149643a1df05aa94ab9e21826043f29e6445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/2b03c13bf79a4cfab688e753833a016048e9c9f4",
-                "reference": "2b03c13bf79a4cfab688e753833a016048e9c9f4",
+                "url": "https://api.github.com/repos/DaveLiddament/php-language-extensions/zipball/99e3149643a1df05aa94ab9e21826043f29e6445",
+                "reference": "99e3149643a1df05aa94ab9e21826043f29e6445",
                 "shasum": ""
             },
             "require": {
@@ -54,22 +54,22 @@
             ],
             "support": {
                 "issues": "https://github.com/DaveLiddament/php-language-extensions/issues",
-                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.6.0"
+                "source": "https://github.com/DaveLiddament/php-language-extensions/tree/0.7.0"
             },
-            "time": "2023-12-07T12:29:08+00:00"
+            "time": "2024-08-08T10:43:28+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.34",
+            "version": "1.11.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "7f806b6f1403e6914c778140e2ba07c293cb4901"
+                "reference": "640410b32995914bde3eed26fa89552f9c2c082f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7f806b6f1403e6914c778140e2ba07c293cb4901",
-                "reference": "7f806b6f1403e6914c778140e2ba07c293cb4901",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/640410b32995914bde3eed26fa89552f9c2c082f",
+                "reference": "640410b32995914bde3eed26fa89552f9c2c082f",
                 "shasum": ""
             },
             "require": {
@@ -112,13 +112,9 @@
                 {
                     "url": "https://github.com/phpstan",
                     "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2023-09-13T09:49:47+00:00"
+            "time": "2024-08-08T09:02:50+00:00"
         }
     ],
     "packages-dev": [
@@ -342,16 +338,16 @@
         },
         {
             "name": "dave-liddament/phpstan-rule-test-helper",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DaveLiddament/phpstan-rule-test-helper.git",
-                "reference": "4dc5854388170d82b3effb83c6e04dff955ea761"
+                "reference": "ca0a9f6258c6cfbf2825a0deaeb77fa0b0556580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/4dc5854388170d82b3effb83c6e04dff955ea761",
-                "reference": "4dc5854388170d82b3effb83c6e04dff955ea761",
+                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/ca0a9f6258c6cfbf2825a0deaeb77fa0b0556580",
+                "reference": "ca0a9f6258c6cfbf2825a0deaeb77fa0b0556580",
                 "shasum": ""
             },
             "require": {
@@ -382,9 +378,9 @@
             "description": "Library to help make testing of PHPStan rules easier",
             "support": {
                 "issues": "https://github.com/DaveLiddament/phpstan-rule-test-helper/issues",
-                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.2.0"
+                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.3.0"
             },
-            "time": "2023-12-10T23:40:03+00:00"
+            "time": "2023-12-14T11:23:30+00:00"
         },
         {
             "name": "doctrine/instantiator",
