@@ -3,5 +3,13 @@ parameters:
     paths:
     - src
     - tests
+    - build
     excludePaths:
     - tests/Rules/data
+
+services:
+
+-
+    class: DaveLiddament\PhpstanPhpLanguageExtensions\Build\PHPStan\Rules\CheckRuleIsInExtension
+    tags:
+    - phpstan.rules.rule
