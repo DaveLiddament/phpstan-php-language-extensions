@@ -7,5 +7,4 @@ use DaveLiddament\PhpLanguageExtensions\InjectableVersion;
 #[InjectableVersion]
 interface Repository
 {
-
 }

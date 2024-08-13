@@ -20,6 +20,7 @@ $expectedErrors = [
     'FriendProblems:11:friend',
     'TraitClassProblems:7:restrictTraitTo',
     'MustUse:18:mustUseResult',
+    'InjectableBad:7:injectableVersion',
 ];
 
 /**
