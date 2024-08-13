@@ -1,0 +1,7 @@
+parameters:
+    level: max
+    paths:
+    - build/e2e/data
+
+includes:
+    - extension.neon

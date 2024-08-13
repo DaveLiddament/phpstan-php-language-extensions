@@ -6,6 +6,7 @@ parameters:
     - build
     excludePaths:
     - tests/Rules/data
+    - build/e2e/data
 
 services:
 
