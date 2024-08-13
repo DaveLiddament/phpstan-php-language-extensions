@@ -1,11 +1,10 @@
 <?php
 
-namespace DaveLiddament\PhpstanPhpLanguageExtensions\Build\e2e\data;
+namespace data;
 
 use DaveLiddament\PhpLanguageExtensions\RestrictTraitTo;
 
 #[RestrictTraitTo(BaseTraitClass::class)]
 trait MyTrait
 {
-
 }

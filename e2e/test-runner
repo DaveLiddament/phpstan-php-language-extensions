@@ -1,3 +1,4 @@
+#!/bin/php
 <?php
 
 /**
@@ -18,13 +19,14 @@ $expectedErrors = [
     'FriendProblems:10:friend',
     'FriendProblems:11:friend',
     'TraitClassProblems:7:restrictTraitTo',
+    'MustUse:18:mustUseResult',
 ];
 
 /**
  * Main script.
  */
-require_once __DIR__.'/build/e2e/PHPStanResultsChecker.php';
-$phpStanResultsChecker = new DaveLiddament\PhpstanPhpLanguageExtensions\Build\e2e\PHPStanResultsChecker();
+require_once __DIR__.'/PHPStanResultsChecker.php';
+$phpStanResultsChecker = new PHPStanResultsChecker();
 $stdIn = file_get_contents('php://stdin');
 
 if (false === $stdIn) {
@@ -34,7 +36,7 @@ if (false === $stdIn) {
 
 try {
     $phpStanResultsChecker->checkResults($stdIn, $expectedErrors);
-    echo "All OK\n";
+    echo "E2E tests OK\n";
     exit(0);
 } catch (Exception $e) {
     echo $e->getMessage().\PHP_EOL;

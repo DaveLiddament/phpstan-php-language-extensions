@@ -1,14 +1,17 @@
 <?php
 
-namespace DaveLiddament\PhpstanPhpLanguageExtensions\Build\e2e;
-
+/**
+ * Script takes JSON output from PHPStan and a list of expected errors. It checks this list matches.
+ *
+ * This should be called from the `test-runner` script.
+ */
 final class PHPStanResultsChecker
 {
     private const IDENTIFIER_PREFIX = 'phpExtensionLibrary.';
-    private const FILE_PATH_TO_REMOVE = 'build/e2e/data/';
+    private const FILE_PATH_TO_REMOVE = 'e2e/data/';
 
     /**
-     * @param array<int,string> $expectedResults
+     * @param array<int,string> $expectedResults see `test-runner` script for format
      */
     public function checkResults(string $phpstanResultsAsJsonString, array $expectedResults): void
     {

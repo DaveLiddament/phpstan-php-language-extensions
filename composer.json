@@ -46,12 +46,14 @@
     "analyse": "phpstan analyse",
     "lint": "parallel-lint src tests",
     "test": "phpunit",
+    "e2e": "phpstan analyse --configuration=e2e/phpstan-e2e.neon --error-format=json | php e2e/test-runner",
     "ci": [
       "@composer-validate",
       "@lint",
       "@cs",
       "@test",
-      "@analyse"
+      "@analyse",
+      "@e2e"
     ]
   },
   "extra": {
