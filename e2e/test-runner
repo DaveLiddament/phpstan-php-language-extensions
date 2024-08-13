@@ -1,0 +1,45 @@
+#!/bin/php
+<?php
+
+/**
+ * Add any expected errors here.
+ *
+ * Format:
+ *
+ * <file>:<line>:<identifier>
+ *
+ * Where:
+ *
+ * `file` is relative to the `build/e2e/data` directory.
+ * `line` is the line number in the file.
+ * `identifier` is the rule's identifier (NOTE: the prefix `phpExtensionLibrary.` is automatically added)
+ */
+$expectedErrors = [
+    'FriendProblems:9:friend',
+    'FriendProblems:10:friend',
+    'FriendProblems:11:friend',
+    'TraitClassProblems:7:restrictTraitTo',
+    'MustUse:18:mustUseResult',
+    'InjectableBad:7:injectableVersion',
+];
+
+/**
+ * Main script.
+ */
+require_once __DIR__.'/PHPStanResultsChecker.php';
+$phpStanResultsChecker = new PHPStanResultsChecker();
+$stdIn = file_get_contents('php://stdin');
+
+if (false === $stdIn) {
+    echo "No input\n";
+    exit(2);
+}
+
+try {
+    $phpStanResultsChecker->checkResults($stdIn, $expectedErrors);
+    echo "E2E tests OK\n";
+    exit(0);
+} catch (Exception $e) {
+    echo $e->getMessage().\PHP_EOL;
+    exit(1);
+}
