@@ -9,7 +9,7 @@ use DaveLiddament\PhpstanRuleTestHelper\AbstractRuleTestCase;
 use PHPStan\Rules\Rule;
 
 /** @extends AbstractRuleTestCase<MustUseResultRule> */
-final class MustUseResultOnMethodTest extends AbstractRuleTestCase
+final class MustUseResultTest extends AbstractRuleTestCase
 {
     protected function getRule(): Rule
     {
@@ -28,6 +28,11 @@ final class MustUseResultOnMethodTest extends AbstractRuleTestCase
         $this->assertIssuesReported(
             __DIR__.'/data/mustUseResult/mustUseResultOnStaticMethod.php',
         );
+    }
+
+    public function testMustUseWithParent(): void
+    {
+        $this->assertIssuesReported(__DIR__.'/data/mustUseResult/mustUseResultWithParent.php');
     }
 
     protected function getErrorFormatter(): string

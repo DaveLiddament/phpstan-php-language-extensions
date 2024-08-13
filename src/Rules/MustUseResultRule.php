@@ -43,8 +43,10 @@ final class MustUseResultRule implements Rule
                 return [];
             }
 
+            $className = $scope->resolveName($class);
+
             $classReflections = [
-                $this->reflectionProvider->getClass($class->toCodeString()),
+                $this->reflectionProvider->getClass($className),
             ];
         } else {
             return [];
