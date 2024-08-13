@@ -25,7 +25,7 @@ final class PHPStanResultsChecker
         $this->assertNotNull($errorCount, 'Failed to find error count in PHPStan results');
         if ((int) $errorCount > 0) {
             $errors = $asJson['errors'] ?? null;
-            throw new \RuntimeException('PHPStan reported errors: '.var_export($errors, true));
+            throw new RuntimeException('PHPStan reported errors: '.var_export($errors, true));
         }
 
         $files = $asJson['files'] ?? null;
@@ -68,14 +68,14 @@ final class PHPStanResultsChecker
             var_export(array_values($expectedResults), true),
         ]);
 
-        throw new \RuntimeException($errorMessage);
+        throw new RuntimeException($errorMessage);
     }
 
     /** @phpstan-assert !null $value  */
     private function assertNotNull(mixed $value, string $error): void
     {
         if (null === $value) {
-            throw new \RuntimeException($error);
+            throw new RuntimeException($error);
         }
     }
 
@@ -83,7 +83,7 @@ final class PHPStanResultsChecker
     private function assertArray(mixed $value, string $error): void
     {
         if (!is_array($value)) {
-            throw new \RuntimeException($error);
+            throw new RuntimeException($error);
         }
     }
 
@@ -91,7 +91,7 @@ final class PHPStanResultsChecker
     {
         $position = strpos($fullFileName, self::FILE_PATH_TO_REMOVE);
         if (false === $position) {
-            throw new \RuntimeException('Failed to find '.self::FILE_PATH_TO_REMOVE.' in '.$fullFileName);
+            throw new RuntimeException('Failed to find '.self::FILE_PATH_TO_REMOVE.' in '.$fullFileName);
         }
         $filePath = substr($fullFileName, $position + strlen(self::FILE_PATH_TO_REMOVE));
 
