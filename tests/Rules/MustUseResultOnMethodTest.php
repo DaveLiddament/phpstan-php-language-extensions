@@ -30,6 +30,11 @@ final class MustUseResultOnMethodTest extends AbstractRuleTestCase
         );
     }
 
+    public function testMustUseWithParent(): void
+    {
+        $this->assertIssuesReported(__DIR__.'/data/mustUseResult/mustUseResultWithParent.php');
+    }
+
     protected function getErrorFormatter(): string
     {
         return 'Result returned by method must be used';
