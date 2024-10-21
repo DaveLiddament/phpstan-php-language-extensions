@@ -4,8 +4,10 @@ parameters:
     - src
     - tests
     - build
+    - e2e
     excludePaths:
     - tests/Rules/data
+    - e2e/data
 
 services:
 
