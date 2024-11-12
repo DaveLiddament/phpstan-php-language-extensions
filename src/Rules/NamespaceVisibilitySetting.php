@@ -22,7 +22,7 @@ class NamespaceVisibilitySetting
     private function __construct(
         private bool $hasNamespace,
         private ?string $namespace,
-        private ?bool $excludeSubNamespace
+        private ?bool $excludeSubNamespace,
     ) {
     }
 

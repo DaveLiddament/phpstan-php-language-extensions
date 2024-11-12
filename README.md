@@ -1,7 +1,7 @@
 # PHPStan PHP Language Extensions (currently in BETA)
 
 [![PHP versions: 8.0 to 8.3](https://img.shields.io/badge/php-8.0|8.1|8.|8.3-blue.svg)](https://packagist.org/packages/dave-liddament/phpstan-php-language-extensions)
-[![Latest Stable Version](https://poser.pugx.org/dave-liddament/phphstan-php-language-extensions/v/stable)](https://packagist.org/packages/dave-liddament/phpstan-php-language-extensions)
+[![Latest Stable Version](https://poser.pugx.org/dave-liddament/phpstan-php-language-extensions/v/stable)](https://packagist.org/packages/dave-liddament/phpstan-php-language-extensions)
 [![License](https://poser.pugx.org/dave-liddament/phpstan-php-language-extensions/license)](https://github.com/DaveLiddament/phpstan-php-language-extensions/blob/main/LICENSE.md)
 [![Total Downloads](https://poser.pugx.org/dave-liddament/phpstan-php-language-extensions/downloads)](https://packagist.org/packages/dave-liddament/phpstan-php-language-extensions/stats)
 
