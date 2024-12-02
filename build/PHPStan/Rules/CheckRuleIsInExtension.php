@@ -23,6 +23,9 @@ final class CheckRuleIsInExtension implements Rule
             throw new \Exception('Expecting neon file to be parseable');
         }
 
+        /**
+         * @var array<array{class?: string}> $services
+         */
         $services = $file['services'] ?? [];
 
         $classes = [];
@@ -68,7 +71,9 @@ final class CheckRuleIsInExtension implements Rule
         }
 
         return [
-            RuleErrorBuilder::message("Rule [$className] not in extension.neon.")->build(),
+            RuleErrorBuilder::message("Rule [$className] not in extension.neon.")
+                ->identifier('phpExtensionLibrary.ruleIsInExtension')
+                ->build(),
         ];
     }
 }

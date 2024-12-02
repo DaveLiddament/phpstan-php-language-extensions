@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc96e1b1b52327cb97d1c9f1dada6a29",
+    "content-hash": "4b908a5a780e635c5ad5777a6de7b293",
     "packages": [
         {
             "name": "dave-liddament/php-language-extensions",
@@ -59,20 +59,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.9",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "ceb937fb39a92deabc02d20709cf14b2c452502c"
+                "reference": "46b4d3529b12178112d9008337beda0cc2a1a6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ceb937fb39a92deabc02d20709cf14b2c452502c",
-                "reference": "ceb937fb39a92deabc02d20709cf14b2c452502c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/46b4d3529b12178112d9008337beda0cc2a1a6b4",
+                "reference": "46b4d3529b12178112d9008337beda0cc2a1a6b4",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -113,7 +113,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-10T17:10:04+00:00"
+            "time": "2024-11-28T22:19:37+00:00"
         }
     ],
     "packages-dev": [
@@ -409,21 +409,21 @@
         },
         {
             "name": "dave-liddament/phpstan-rule-test-helper",
-            "version": "0.4.0",
+            "version": "dev-phpstan-v2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/DaveLiddament/phpstan-rule-test-helper.git",
-                "reference": "137e895ab049b22c11b55354eb8fc9261e9fa0ad"
+                "url": "https://github.com/simPod/phpstan-rule-test-helper.git",
+                "reference": "1ea2f22577b8afca0df2d8e4bf46f910e698aa1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DaveLiddament/phpstan-rule-test-helper/zipball/137e895ab049b22c11b55354eb8fc9261e9fa0ad",
-                "reference": "137e895ab049b22c11b55354eb8fc9261e9fa0ad",
+                "url": "https://api.github.com/repos/simPod/phpstan-rule-test-helper/zipball/1ea2f22577b8afca0df2d8e4bf46f910e698aa1c",
+                "reference": "1ea2f22577b8afca0df2d8e4bf46f910e698aa1c",
                 "shasum": ""
             },
             "require": {
                 "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-                "phpstan/phpstan": "^1.6"
+                "phpstan/phpstan": "^2.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.7",
@@ -436,7 +436,39 @@
                     "DaveLiddament\\PhpstanRuleTestHelper\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "DaveLiddament\\PhpstanRuleTestHelper\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "composer-validate": [
+                    "@composer validate --no-check-all --strict"
+                ],
+                "cs-fix": [
+                    "php-cs-fixer fix"
+                ],
+                "cs": [
+                    "@putenv PHP_CS_FIXER_IGNORE_ENV=1",
+                    "php-cs-fixer fix --dry-run -v"
+                ],
+                "analyse": [
+                    "phpstan analyse"
+                ],
+                "lint": [
+                    "parallel-lint src tests"
+                ],
+                "test": [
+                    "phpunit"
+                ],
+                "ci": [
+                    "@composer-validate",
+                    "@lint",
+                    "@cs",
+                    "@test",
+                    "@analyse"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -448,10 +480,9 @@
             ],
             "description": "Library to help make testing of PHPStan rules easier",
             "support": {
-                "issues": "https://github.com/DaveLiddament/phpstan-rule-test-helper/issues",
-                "source": "https://github.com/DaveLiddament/phpstan-rule-test-helper/tree/0.4.0"
+                "source": "https://github.com/simPod/phpstan-rule-test-helper/tree/phpstan-v2"
             },
-            "time": "2024-10-26T13:34:00+00:00"
+            "time": "2024-12-02T17:12:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -4497,9 +4528,18 @@
             "time": "2024-03-03T12:36:25+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "dave-liddament/phpstan-rule-test-helper",
+            "version": "dev-phpstan-v2",
+            "alias": "0.5.0",
+            "alias_normalized": "0.5.0.0"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "dave-liddament/phpstan-rule-test-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

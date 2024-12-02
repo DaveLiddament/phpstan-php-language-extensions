@@ -6,7 +6,7 @@ class FriendProblems
 {
     public function badCode(Person $person): void
     {
-        new Person();
+        new Person(); /** @phpstan-ignore new.resultUnused */
         Person::aStaticMethod();
         $person->aMethod();
     }

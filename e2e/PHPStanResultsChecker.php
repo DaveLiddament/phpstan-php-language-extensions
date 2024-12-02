@@ -21,6 +21,7 @@ final class PHPStanResultsChecker
         $totals = $asJson['totals'] ?? null;
         $this->assertArray($totals, 'Failed to find totals in PHPStan results');
 
+        /** @var int|null $errorCount */
         $errorCount = $totals['errors'] ?? null;
         $this->assertNotNull($errorCount, 'Failed to find error count in PHPStan results');
         if ((int) $errorCount > 0) {
@@ -40,6 +41,7 @@ final class PHPStanResultsChecker
             $messages = $fileIssues['messages'] ?? null;
             $this->assertArray($messages, 'Failed to find messages in PHPStan results');
 
+            /** @var array{identifier?: string, line?: int} $issue */
             foreach ($messages as $issue) {
                 $line = $issue['line'] ?? null;
                 $identifier = $issue['identifier'] ?? '';
@@ -63,7 +65,7 @@ final class PHPStanResultsChecker
 
         $errorMessage = implode("\n", [
             'Additional reported errors:',
-            var_export(array_values($additionalReportedErrors), true),
+            var_export($additionalReportedErrors, true),
             'Expected errors not reported:',
             var_export(array_values($expectedResults), true),
         ]);
@@ -79,7 +81,7 @@ final class PHPStanResultsChecker
         }
     }
 
-    /** @phpstan-assert array $value  */
+    /** @phpstan-assert array<mixed> $value  */
     private function assertArray(mixed $value, string $error): void
     {
         if (!is_array($value)) {

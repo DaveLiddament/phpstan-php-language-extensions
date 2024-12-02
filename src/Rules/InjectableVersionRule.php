@@ -14,7 +14,6 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\InClassMethodNode;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -62,9 +61,7 @@ class InjectableVersionRule implements Rule
             return [];
         }
 
-        $parameters = ParametersAcceptorSelector::selectSingle($method->getVariants());
-
-        foreach ($parameters->getParameters() as $index => $parameter) {
+        foreach ($method->getParameters() as $index => $parameter) {
             $position = $index + 1;
 
             $type = $parameter->getType();
