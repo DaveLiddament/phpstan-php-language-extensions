@@ -2,6 +2,7 @@
 
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Build\PHPStan\Rules;
 
+use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Assert;
 use Nette\Neon\Neon;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
@@ -24,13 +25,17 @@ final class CheckRuleIsInExtension implements Rule
         }
 
         $services = $file['services'] ?? [];
+        Assert::assertArray($services);
 
         $classes = [];
         foreach ($services as $service) {
+            Assert::assertArray($service);
             $class = $service['class'] ?? null;
             if (null === $class) {
                 continue;
             }
+
+            Assert::assertString($class);
             $classes[] = $class;
         }
 
@@ -68,7 +73,7 @@ final class CheckRuleIsInExtension implements Rule
         }
 
         return [
-            RuleErrorBuilder::message("Rule [$className] not in extension.neon.")->build(),
+            RuleErrorBuilder::message("Rule [$className] not in extension.neon.")->identifier('phpstanExtensionLibrary.misconfigured')->build(),
         ];
     }
 }
