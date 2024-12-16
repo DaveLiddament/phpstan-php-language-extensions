@@ -23,7 +23,10 @@ class AttributeValueReader
         $reflectionMethod = $reflectionClass->getMethod($methodName);
 
         foreach ($reflectionMethod->getAttributes($attributeClassName) as $attribute) {
-            return $attribute->getArguments();
+            $arguments = $attribute->getArguments();
+            Assert::arrayOfStrings($arguments);
+
+            return $arguments;
         }
 
         return [];
@@ -40,7 +43,10 @@ class AttributeValueReader
         string $attributeClassName,
     ): array {
         foreach ($reflectionClass->getAttributes($attributeClassName) as $attribute) {
-            return $attribute->getArguments();
+            $arguments = $attribute->getArguments();
+            Assert::arrayOfStrings($arguments);
+
+            return $arguments;
         }
 
         return [];

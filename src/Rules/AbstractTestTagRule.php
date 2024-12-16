@@ -10,8 +10,8 @@ use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\TestClassChecker;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Rules\IdentifierRuleError;
 use PHPStan\Rules\Rule;
-use PHPStan\Rules\RuleError;
 use PHPStan\Rules\RuleErrorBuilder;
 
 /**
@@ -39,7 +39,7 @@ abstract class AbstractTestTagRule implements Rule
         Scope $scope,
         string $class,
         string $methodName,
-    ): ?RuleError {
+    ): ?IdentifierRuleError {
         $callingClass = $scope->getClassReflection()?->getName();
 
         $classReflection = $this->reflectionProvider->getClass($class);

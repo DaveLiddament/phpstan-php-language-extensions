@@ -6,7 +6,7 @@ class FriendProblems
 {
     public function badCode(Person $person): void
     {
-        new Person();
+        $person = new Person();
         Person::aStaticMethod();
         $person->aMethod();
     }
