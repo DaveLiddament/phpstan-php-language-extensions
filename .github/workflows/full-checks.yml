@@ -61,3 +61,8 @@ jobs:
 
       - name: "Full CI"
         run: "composer ci"
+
+      - name: "Check dependencies"
+        run: |
+          cd dependency-tests
+          ./check-phpstan-dependencies.sh

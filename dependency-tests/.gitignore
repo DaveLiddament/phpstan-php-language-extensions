@@ -1,0 +1,3 @@
+*
+!.gitignore
+!check-phpstan-dependencies.sh
