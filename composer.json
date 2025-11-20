@@ -4,7 +4,7 @@
   "keywords": ["static analysis", "phpstan", "namespace visibility attribute", "friend attribute"],
   "type": "phpstan-extension",
   "require": {
-    "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+    "php": "~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
     "phpstan/phpstan": "^1.12.15 || ^2.0",
     "dave-liddament/php-language-extensions": "^0.8.0 || ^0.9.0"
   },
