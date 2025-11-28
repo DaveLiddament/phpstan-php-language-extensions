@@ -4,31 +4,15 @@ FROM php:${PHP_VERSION}cli
 # Increase memory limit
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
-# install Composer
-COPY ./docker/composer.sh /root/
-
+# Install Composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN <<EOF
-set -eux;
-apt-get update;
-apt-get install -y  \
-    git  \
-    zip;
-rm -rf /var/lib/apt/lists/*;
-cd /root/;
-chmod 755 composer.sh;
-/root/composer.sh;
-mv /root/composer.phar /usr/local/bin/composer;
-rm /root/composer.sh;
+set -eux
+apt-get update
+apt-get install --yes git zip
+rm -rf /var/lib/apt/lists/*
 EOF
 
-# install Xdebug
-ARG XDEBUG_ENABLED=1
-
-RUN <<EOF
-if [ $XDEBUG_ENABLED -eq 1 ]; then
-    pecl install xdebug;
-    docker-php-ext-enable xdebug;
-fi
-EOF
-
-WORKDIR /app/
+# Sort out git
+RUN git config --global --add safe.directory /app
+WORKDIR /app

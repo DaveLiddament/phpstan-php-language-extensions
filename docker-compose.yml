@@ -5,7 +5,8 @@ services:
         PHP_VERSION: ""
     tty: true
     volumes:
-      - .:/app/
+      - .:/app:delegated
+    networks: []
   php80:
     build:
       args:
@@ -33,7 +34,7 @@ services:
   php84:
     build:
       args:
-        PHP_VERSION: "8.4-rc-"
+        PHP_VERSION: "8.4-"
         XDEBUG_ENABLED: 0
     extends:
       service: latest
