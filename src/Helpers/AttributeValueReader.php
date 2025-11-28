@@ -7,7 +7,7 @@ namespace DaveLiddament\PhpstanPhpLanguageExtensions\Helpers;
 class AttributeValueReader
 {
     /**
-     * @param \ReflectionClass<object> $reflectionClass
+     * @param \ReflectionClass<*> $reflectionClass
      * @param class-string $attributeClassName
      *
      * @return array<int, string>
@@ -33,7 +33,7 @@ class AttributeValueReader
     }
 
     /**
-     * @param \ReflectionClass<object> $reflectionClass
+     * @param \ReflectionClass<*> $reflectionClass
      * @param class-string $attributeClassName
      *
      * @return array<int, string>
