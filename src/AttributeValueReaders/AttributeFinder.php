@@ -9,7 +9,7 @@ final class AttributeFinder
     /**
      * @template T of object
      *
-     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     * @param \ReflectionClass<*>|\ReflectionEnum<*> $class
      * @param class-string<T> $attributeName
      *
      * @return \ReflectionAttribute<T>|null
@@ -30,7 +30,7 @@ final class AttributeFinder
      * @template T of object
      *
      * @param class-string<T> $attributeName
-     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     * @param \ReflectionClass<*>|\ReflectionEnum<*> $class
      *
      * @return \ReflectionAttribute<T>|null
      */
@@ -55,7 +55,7 @@ final class AttributeFinder
 
     /**
      * @param class-string $attributeName
-     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     * @param \ReflectionClass<*>|\ReflectionEnum<*> $class
      */
     public static function hasAttributeOnClass(
         \ReflectionClass|\ReflectionEnum $class,
@@ -68,7 +68,7 @@ final class AttributeFinder
 
     /**
      * @param class-string $attributeName
-     * @param \ReflectionClass<object>|\ReflectionEnum<object> $class
+     * @param \ReflectionClass<*>|\ReflectionEnum<*> $class
      */
     public static function hasAttributeOnMethod(
         \ReflectionClass|\ReflectionEnum $class,
