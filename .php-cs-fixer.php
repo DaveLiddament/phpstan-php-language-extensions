@@ -1,7 +1,7 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('tests/Rules/data')
+    ->exclude(['tests/Rules/data', 'e2e/data'])
     ->in(__DIR__);
 
 $config = new PhpCsFixer\Config();
@@ -24,6 +24,7 @@ return $config
             'phpdoc_to_comment' => false,
             'native_function_invocation' => false,
             'nullable_type_declaration_for_default_null_value' => true,
+            'declare_strict_types' => true,
         ]
     )
     ->setFinder($finder)

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Script takes JSON output from PHPStan and a list of expected errors. It checks this list matches.
  *
