@@ -18,6 +18,7 @@ This is an extension for [PHPStan](https://phpstan.org) for adding analysis for 
 - [NamespaceVisibility](https://github.com/DaveLiddament/php-language-extensions#namespaceVisibility)
 - [Package](https://github.com/DaveLiddament/php-language-extensions#package) 
 - [Restrict Trait To](https://github.com/DaveLiddament/php-language-extensions#retrictTraitTo)
+- [Sealed](https://github.com/DaveLiddament/php-language-extensions#sealed)
 - [Test Tag](https://github.com/DaveLiddament/php-language-extensions#testtag)
 
 ## Installation

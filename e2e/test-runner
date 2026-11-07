@@ -21,6 +21,7 @@ $expectedErrors = [
     'TraitClassProblems:7:restrictTraitTo',
     'MustUse:18:mustUseResult',
     'InjectableBad:7:injectableVersion',
+    'SealedProblems:5:sealed',
 ];
 
 /**
