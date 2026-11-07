@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
 use DaveLiddament\PhpLanguageExtensions\MustUseResult;

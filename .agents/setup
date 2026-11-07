@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# Prepares an Amp orb (Debian 12) for this repository: PHP 8.0 (the lowest
+# supported version), Composer, and the project's Composer dependencies.
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+PHP_VERSION="8.0"
+PHP_PACKAGES=(
+  "php${PHP_VERSION}-cli"
+  "php${PHP_VERSION}-mbstring"
+  "php${PHP_VERSION}-xml"
+  "php${PHP_VERSION}-curl"
+  "php${PHP_VERSION}-zip"
+  "php${PHP_VERSION}-xdebug"
+)
+
+step() {
+  echo "==> $1"
+  SECONDS=0
+}
+done_step() {
+  echo "    (${SECONDS}s)"
+}
+
+missing_packages=()
+for pkg in "${PHP_PACKAGES[@]}" unzip git; do
+  dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed" || missing_packages+=("$pkg")
+done
+
+if ((${#missing_packages[@]} > 0)); then
+  step "Installing ${missing_packages[*]}"
+  sury_list=/etc/apt/sources.list.d/sury-php.list
+  if [ ! -f "$sury_list" ]; then
+    # Debian 12 only ships PHP 8.2; the Sury repository provides older versions.
+    sudo apt-get update -qq
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ca-certificates curl lsb-release
+    keyring_deb="$(mktemp --suffix=.deb)"
+    curl -fsSLo "$keyring_deb" https://packages.sury.org/debsuryorg-archive-keyring.deb
+    sudo dpkg -i "$keyring_deb"
+    rm -f "$keyring_deb"
+    echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" \
+      | sudo tee "$sury_list" >/dev/null
+  fi
+  sudo apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends "${missing_packages[@]}"
+  done_step
+fi
+
+# Match the Docker setup: no memory limit (php-cs-fixer and PHPStan need it).
+# Xdebug stays installed for coverage but is off unless XDEBUG_MODE is set.
+php_ini=/etc/php/${PHP_VERSION}/cli/conf.d/99-orb.ini
+if [ ! -f "$php_ini" ]; then
+  printf 'memory_limit = -1\nxdebug.mode = off\n' | sudo tee "$php_ini" >/dev/null
+fi
+
+if [ "$(readlink -f "$(command -v php || true)")" != "/usr/bin/php${PHP_VERSION}" ]; then
+  sudo update-alternatives --set php "/usr/bin/php${PHP_VERSION}"
+fi
+
+if ! command -v composer >/dev/null; then
+  step "Installing Composer"
+  tmp="$(mktemp -d)"
+  curl -fsSLo "$tmp/composer.phar" https://getcomposer.org/download/latest-stable/composer.phar
+  curl -fsSLo "$tmp/composer.phar.sha256" https://getcomposer.org/download/latest-stable/composer.phar.sha256
+  echo "$(cat "$tmp/composer.phar.sha256")  $tmp/composer.phar" | sha256sum -c --quiet
+  sudo install -m 0755 "$tmp/composer.phar" /usr/local/bin/composer
+  rm -rf "$tmp"
+  done_step
+fi
+
+# composer.lock is git-ignored, so the first run resolves dependencies for
+# PHP 8.0 and later runs reuse the lock file restored from the snapshot.
+step "Installing Composer dependencies"
+COMPOSER_NO_INTERACTION=1 composer install --no-progress
+done_step

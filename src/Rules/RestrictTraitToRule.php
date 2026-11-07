@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Rules;
 
 use DaveLiddament\PhpLanguageExtensions\RestrictTraitTo;
@@ -45,8 +47,8 @@ final class RestrictTraitToRule implements Rule
         foreach ($node->traits as $trait) {
             $classReflection = $this->reflectionProvider->getClass($trait->toCodeString())->getNativeReflection();
 
-            if ($this->cache->hasEntry($classReflection)) {
-                $restrictTraitToClassName = $this->cache->getEntry($classReflection);
+            if ($this->cache->hasEntry($classReflection->getName())) {
+                $restrictTraitToClassName = $this->cache->getEntry($classReflection->getName());
             } else {
                 $restrictTraitTo = AttributeFinder::getAttributeOnClass($classReflection, RestrictTraitTo::class);
 
@@ -56,7 +58,7 @@ final class RestrictTraitToRule implements Rule
                     $restrictTraitToClassName = AttributeValueReader::getString($restrictTraitTo, 0, 'className');
                 }
 
-                $this->cache->addEntry($classReflection, $restrictTraitToClassName);
+                $this->cache->addEntry($classReflection->getName(), $restrictTraitToClassName);
             }
 
             if (null === $restrictTraitToClassName) {

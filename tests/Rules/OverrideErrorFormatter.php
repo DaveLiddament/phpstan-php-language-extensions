@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DaveLiddament\PhpstanPhpLanguageExtensions\Tests\Rules;
 
 use DaveLiddament\PhpstanRuleTestHelper\ErrorMessageFormatter;

@@ -6,3 +6,4 @@ Vagrantfile
 .php-cs-fixer.cache
 composer.lock
 
+.amp/portals/*

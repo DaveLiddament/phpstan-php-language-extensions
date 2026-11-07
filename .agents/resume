@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Nothing to reconnect: this repository has no services or credentials.
+set -euo pipefail
+
+php --version | head -n 1
