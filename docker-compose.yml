@@ -7,24 +7,6 @@ services:
     volumes:
       - .:/app:delegated
     networks: []
-  php80:
-    build:
-      args:
-        PHP_VERSION: "8.0-"
-    extends:
-      service: latest
-  php81:
-    build:
-      args:
-        PHP_VERSION: "8.1-"
-    extends:
-      service: latest
-  php82:
-    build:
-      args:
-        PHP_VERSION: "8.2-"
-    extends:
-      service: latest
   php83:
     build:
       args:
@@ -36,5 +18,11 @@ services:
       args:
         PHP_VERSION: "8.4-"
         XDEBUG_ENABLED: 0
+    extends:
+      service: latest
+  php85:
+    build:
+      args:
+        PHP_VERSION: "8.5-"
     extends:
       service: latest

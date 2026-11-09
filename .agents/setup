@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Prepares an Amp orb (Debian 12) for this repository: PHP 8.0 (the lowest
+# Prepares an Amp orb (Debian 12) for this repository: PHP 8.3 (the lowest
 # supported version), Composer, and the project's Composer dependencies.
 set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
-PHP_VERSION="8.0"
+PHP_VERSION="8.3"
 PHP_PACKAGES=(
   "php${PHP_VERSION}-cli"
   "php${PHP_VERSION}-mbstring"
@@ -32,7 +32,7 @@ if ((${#missing_packages[@]} > 0)); then
   step "Installing ${missing_packages[*]}"
   sury_list=/etc/apt/sources.list.d/sury-php.list
   if [ ! -f "$sury_list" ]; then
-    # Debian 12 only ships PHP 8.2; the Sury repository provides older versions.
+    # Debian 12 only ships PHP 8.2; the Sury repository provides newer versions.
     sudo apt-get update -qq
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ca-certificates curl lsb-release
     keyring_deb="$(mktemp --suffix=.deb)"
@@ -70,7 +70,7 @@ if ! command -v composer >/dev/null; then
 fi
 
 # composer.lock is git-ignored, so the first run resolves dependencies for
-# PHP 8.0 and later runs reuse the lock file restored from the snapshot.
+# PHP 8.3 and later runs reuse the lock file restored from the snapshot.
 step "Installing Composer dependencies"
 COMPOSER_NO_INTERACTION=1 composer install --no-progress
 done_step
