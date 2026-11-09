@@ -18,10 +18,7 @@ cat <<- "EOF" > composer.json
 }
 EOF
 
-# Check PHPStan v1 is OK
-composer require --dev phpstan/phpstan:^1.0
+# Check the lowest supported PHPStan v2 is OK
+composer require --dev phpstan/phpstan:^2.0
 composer require --dev dave-liddament/phpstan-php-language-extensions @dev
 composer update --prefer-lowest --no-interaction
-
-# Check PHPStan v2 is OK
-composer require --dev phpstan/phpstan:^2.0

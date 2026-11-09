@@ -49,16 +49,16 @@ You can run composer scripts in any supported PHP version through Docker:
 docker compose run --rm php<version> composer <script> 
 ```
 
-For example, to run `cs-fix` on PHP 8.2:
+For example, to run `cs-fix` on PHP 8.3:
 
 ```shell
-docker compose run --rm php82 composer cs-fix
+docker compose run --rm php83 composer cs-fix
 ```
 
 To run all validations in every supported PHP version, you can use the following command:
 
 ```shell
-for v in 81 82 83 84; do docker compose run --rm php$v composer ci || break; done
+for v in 83 84 85; do docker compose run --rm php$v composer ci || break; done
 ```
 
 See [composer.json](/composer.json) section `scripts` for all available scripts.
