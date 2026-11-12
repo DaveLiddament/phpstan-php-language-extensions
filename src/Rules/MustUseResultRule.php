@@ -9,6 +9,7 @@ use DaveLiddament\PhpstanPhpLanguageExtensions\AttributeValueReaders\AttributeFi
 use DaveLiddament\PhpstanPhpLanguageExtensions\Helpers\Cache;
 use PhpParser\Node;
 use PHPStan\Analyser\Scope;
+use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
@@ -68,11 +69,8 @@ final class MustUseResultRule implements Rule
             if ($this->cache->hasEntry($fullMethodName)) {
                 $mustUseResult = $this->cache->getEntry($fullMethodName);
             } else {
-                $mustUseResult = AttributeFinder::hasAttributeOnMethod(
-                    $classReflection->getNativeReflection(),
-                    $methodName,
-                    MustUseResult::class,
-                );
+                $mustUseResult = $this->isMustUseResult($classReflection, $methodName);
+
                 $this->cache->addEntry($fullMethodName, $mustUseResult);
             }
 
@@ -86,5 +84,28 @@ final class MustUseResultRule implements Rule
         }
 
         return [];
+    }
+
+    private function isMustUseResult(ClassReflection $classReflection, string $methodName): bool
+    {
+        if (AttributeFinder::hasAttributeOnMethod(
+            $classReflection->getNativeReflection(),
+            $methodName,
+            MustUseResult::class,
+        )) {
+            return true;
+        }
+
+        foreach ($classReflection->getAncestors() as $parentClassReflection) {
+            if (AttributeFinder::hasAttributeOnMethod(
+                $parentClassReflection->getNativeReflection(),
+                $methodName,
+                MustUseResult::class,
+            )) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
